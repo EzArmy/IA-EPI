@@ -2,4 +2,4 @@
 
 ### Link to see the project below:
 
-college-activity.vercel.app
+[college-activity.vercel.app](https://college-activity.vercel.app/)
