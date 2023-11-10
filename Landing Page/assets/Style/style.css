@@ -71,6 +71,12 @@ body{
     padding: 0 !important;
 }
 
+.profile-circle{
+    width: auto;
+    height: 350px;
+    border-radius: 20px;
+}
+
 @font-face {
     font-family: Timmana;
     src: url(../fonts/timmana/Timmana-Regular.ttf);
@@ -111,7 +117,7 @@ body {
 .square-container {
     position: relative;
     width: 100%;
-    padding-bottom: 100%; /* Esta proporção mantém a div quadrada (1:1) */
+    padding-bottom: 100%;
     overflow: hidden;
 }
 
@@ -132,6 +138,12 @@ body {
 
 .custom-content-img img {
     border-radius: 10px;
+}
+
+.custom-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .custom-card h5 {
@@ -213,6 +225,11 @@ body {
     margin: 10px;
     width: auto;
     height: 50px;
+}
+
+textarea{
+    width: 100%;
+    height: 100px !important;
 }
 
 /* Responsivity */
