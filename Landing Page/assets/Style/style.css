@@ -1,0 +1,286 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+:root{
+    --vigillatus-black: #373737;
+    --vigillatus-blue: #4A7296;
+}
+
+/* Testing corousel */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-content {
+    padding: 20px 10px;
+    display: flex;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+.carousel-content.active {
+    display: flex;
+    animation-name: slideIn;
+}
+
+.carousel-content.inactive {
+    display: none;
+    animation-name: slideOut;
+}
+
+.carousel-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+ .carousel-font{
+    color: white;
+    font-size: 17px;
+    font-weight: 650;
+}
+
+/* Testing corousel */
+
+.no-padding {
+    padding: 0 !important;
+}
+
+@font-face {
+    font-family: Timmana;
+    src: url(../fonts/timmana/Timmana-Regular.ttf);
+}
+
+@font-face {
+    font-family: Sansation;
+    src: url(../fonts/sansation/Sansation_Regular.ttf);
+}
+
+.banner {
+    background-image: url(../img/banner/banner2.png);
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+}
+
+.navbar {
+    position: relative;
+    z-index: 1000;
+    background-color: transparent;
+    border-bottom: 3px solid #fff;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+.collapse ul li a{
+    font-size: 18px;
+}
+
+body {
+    margin: 0;
+}
+
+.square-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* Esta proporção mantém a div quadrada (1:1) */
+    overflow: hidden;
+}
+
+.square-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.custom-img {
+    max-width: 100%;
+    height: auto; 
+    max-height: 300px;
+}
+
+.custom-content-img img {
+    border-radius: 10px;
+}
+
+.custom-card h5 {
+    color: #ffff;
+    margin: 10px 0px;
+}
+
+.custom-card p {
+    color: #fff;
+    margin: 10px 0px;
+}
+
+.vant-img {
+    width: auto !important;
+    height: 150px !important;
+}
+
+.card{
+    border: 0px solid transparent;
+}
+
+.CUSTODIRE{
+    vertical-align: baseline;
+    font-size: 75px;
+    font-family: Sansation;
+    color: white;
+}
+
+.VIGILLATUS{
+    vertical-align: baseline;
+    font-size: 75px;
+    font-family: Timmana;
+    color: white;
+}
+
+.custom-size{
+    display: flex;
+    align-items: center;
+    height: 80%;
+}
+
+.cad-btn{
+    margin: 0 10px 0 0 ;
+    padding: 10px 5px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: #608F88;
+}
+
+.cad-btn li a{
+    font-weight: 600;
+    font-size: 18px;
+    color: white !important;
+}
+ .cad-btn:hover{
+    filter: drop-shadow(inset 0 0 20px black);
+    background-color: #608f887a;
+    border: 2px solid white;
+    transition: all .2s ease;
+ }
+
+.d-col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vigillatus-sub{
+    margin-top:12px ;
+    color: var(--vigillatus-blue);
+    font-weight: 650;
+}
+
+.bg-darkBlue{
+    background-color:var(--vigillatus-black) !important;
+}
+
+.footer_logo{
+    margin: 10px;
+    width: auto;
+    height: 50px;
+}
+
+/* Responsivity */
+@media screen and (max-width: 576px) {
+    .logo{
+        width: 150px;
+    }
+
+    .custom-img {
+        max-width: 100%;
+        height: auto; 
+        max-height: 250px;
+    }
+
+    .dontShow{
+        display: none;
+    }
+}
+
+@media (min-width: 768px){
+    .logo{
+        width: 250px;
+    }
+
+    .dontShow{
+        display: none;
+    }
+
+    .Show{
+        display: block;
+    }
+}
+
+@media (min-width: 992px){
+    .dontShow{
+        display: none;
+    }
+
+    .Show{
+        display: block;
+    }
+
+    .logo{
+        width: 350px;
+    }
+    .custom-img {
+        max-width: 100%;
+        height: auto; 
+        max-height: 350px;
+    }
+}
+
+@media (min-width: 1200px){
+    .dontShow{
+        display: none;
+    }
+
+    .Show{
+        display: block;
+    }
+}
+
+@media (min-width: 1400px){
+    .dontShow{
+        display: none;
+    }
+
+    .Show{
+        display: block;
+    }
+}
