@@ -7,9 +7,27 @@ body{
     overflow-x: hidden;
 }
 
+.tittle-text{
+    padding: 25px;
+}
+
 :root{
     --vigillatus-black: #373737;
     --vigillatus-blue: #4A7296;
+}
+
+.col-txt{
+    /* border: 2px solid greenyellow; */
+    text-align: justify;
+    width: 900px;
+    column-count:2;
+    column-rule:3px solid #FFFF;
+    -moz-column-count:2;
+    -moz-column-rule:3px solid #FFFF;
+    -webkit-column-count:2;
+    -webkit-column-rule:3px solid #FFFF;
+    -o-column-count:2;
+    -o-column-rule:3px solid #FFFF;
 }
 
 /* Testing corousel */
@@ -42,6 +60,7 @@ body{
     animation-duration: 1s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
+    /* border: 1px solid red; */
 }
 
 .carousel-content.active {
@@ -244,9 +263,11 @@ textarea{
         max-height: 250px;
     }
 
-    .dontShow{
+    .dontShowCad{
         display: none;
     }
+
+
 }
 
 @media (min-width: 768px){
