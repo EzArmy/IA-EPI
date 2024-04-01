@@ -1,0 +1,48 @@
+<aside class="col-start-1 h-screen flex flex-col justify-between">
+    <h3>Menu</h3>
+    <ul class="flex flex-col justify-around h-full">
+        <li>
+            <a href="/home">
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Câmeras
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Histórico
+            </a>
+        </li>
+        <li>
+            <a href="/home/colaboradores">
+                Colaboradores
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Configurações
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Dashboard
+            </a>
+        </li>
+    </ul>
+
+    <a href="/home/perfilGestor">
+        <div class="flex flex-row">
+            <img src="<%= imagePath %>" style='width: 50px; height: 50px; border-radius: 100%;' alt="<%= user.name %>">
+            <div>
+                <p>
+                    <%= user.nome %>
+                </p>
+                <a href="/logout">sair</a>
+            </div>
+        </div>
+    </a>
+
+</aside>

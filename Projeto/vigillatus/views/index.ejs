@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        /* Estilos dos cards */
+        .card {
+            /* Adicione estilos para os cards aqui */
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>LOGIN</h1>
+
+    <!-- Exibir mensagem de erro se existir -->
+    <% if (error) { %>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><%= error %></p>
+            </div>
+        </div>
+    <% } %>
+
+    <form action="/login" method="post">
+        <input placeholder="Email" type="email" name="email" id="">
+        <br>
+        <input placeholder="Senha" type="password" name="senha" id="">
+        <br>
+        <input type="submit" value="Login">
+    </form>
+
+    <br><br>
+
+    <a href="/cadastrar">Cadastrar</a>
+</body>
+</html>

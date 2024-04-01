@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar</title>
+</head>
+
+<body>
+    <h1>CADASTRAR</h1>
+
+    <div>
+        <%= error %>
+    </div>
+
+    <form action="/cadastrar/cadGestor" method="post" enctype="multipart/form-data">
+        <input required placeholder="Gestor - Nome" type="text" name="gestorNome" id="">
+        <br>
+        <input required placeholder="Gestor - Email" type="email" name="gestorEmail" id="">
+        <br>
+        <input required placeholder="Gestor - Senha" type="password" name="gestorSenha" id="">
+        <br>
+        <input placeholder="Gestor - Foto de perfil" type="file" name="gestorFoto" id="">
+        <br>
+        <select required name="gestorSetor" id="">
+
+            <option selected disabled>
+                ESCOLHA UM SETOR
+            </option>
+
+            <% listaSetores.forEach((listaSetores)=>{ %>
+
+                <option value="<%= listaSetores.id %>">
+                    <%= listaSetores.descricao %>
+                </option>
+
+                <% }); %>
+        </select>   
+        <br>
+        <select required name="gestorCargo">
+
+            <option selected disabled>ESCOLHA UM CARGO</option>
+
+            <% listaCargos.forEach((listaCargos)=>{ %>
+
+                <option value="<%= listaCargos.id %>">
+                    <%= listaCargos.nome %>
+                </option>
+
+                <% }); %>
+
+        </select>
+        <br>
+        <input type="submit" value="Cadastrar">
+    </form>
+
+    <br><br>
+    <a href="/">login</a>
+</body>
+
+</html>

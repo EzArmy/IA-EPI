@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar colaborador</title>
+</head>
+<body>
+    
+    <div id="loader"></div>
+
+    <h1>ADICIONAR COLABORADOR</h1>
+
+    <%- include('./partials/menu') %>
+
+    <form action="/home/addColab/cadColab" method="post" enctype="multipart/form-data">
+        <input placeholder="Colaborador - Nome" type="text" name="colabNome" id="">
+        <br>
+        <input placeholder="Colaborador - Email" type="email" name="colabEmail" id="">
+        <br>
+        <select name="colabSetor" id="">
+            <option disabled selected>
+                Escolha um setor
+            </option>
+
+            <% listaSetores.forEach((listaSetores)=>{ %>
+
+                <option value="<%= listaSetores.id %>">
+                    <%= listaSetores.descricao %>
+                </option>
+
+            <% }); %>
+            
+        </select>
+        <br>
+        <select name="colabCargo" id="">
+            <option disabled selected>
+                Escolha um cargo
+            </option>
+
+            <% listaCargos.forEach((listaCargos)=>{ %>
+
+                <option value="<%= listaCargos.id %>">
+                    <%= listaCargos.nome %>
+                </option>
+
+            <% }); %>
+        </select>
+        <br>
+        <input type="file" name="colabFoto" id="">
+        <br>
+        <input type="submit" value="Cadastrar colaborador">
+    </form>
+
+</body>
+</html>

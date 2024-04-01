@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colab</title>
+</head>
+<body>
+
+    <div id="loader"></div>
+
+    <div id="loader"></div>
+
+    <h1>Página do colaborador</h1>
+
+    <%- include('./partials/menu') %>
+
+    <%listColabInfo.forEach((listColabInfo)=>{ %>
+        <h3><%= listColabInfo.nome %></h3>
+    <% }); %>
+
+    <%listColabInfo.forEach((listColabInfo)=>{ %>
+        <img style="width: 100px; height: 100px;" src="/uploads/<%= gestorInfo.nome %>/colaboradores/<%= listColabInfo.nome %>/<%= listColabInfo.foto %>" alt="imagem de <%= listColabInfo.nome %>">
+    <% }); %>
+
+    <% listColabInfo.forEach((listColabInfo)=>{ %>
+        <h4><%= listColabInfo.nome %></h4>
+    <% }); %>
+
+</body>
+</html>
