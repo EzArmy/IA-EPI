@@ -4,4 +4,6 @@ const Cargo = Db.sequelize.define('cargos', {
     nivel: Db.Sequelize.DataTypes.SMALLINT
 });
 
+//Cargo.sync()
+
 module.exports = Cargo;

@@ -23,6 +23,6 @@ const Gestor = Db.sequelize.define('gestores', {
     }
 });
 
-Gestor.sync();
+//Gestor.sync();
 
 module.exports = Gestor;

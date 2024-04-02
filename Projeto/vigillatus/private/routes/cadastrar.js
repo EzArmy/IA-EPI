@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
     const listaSetores = await Setor.findAll();
     const listaCargos = await Cargo.findAll({
         where: {
-            id: [1, 2]
+            nivel: 1
         }
     });
 
@@ -55,7 +55,7 @@ router.post('/cadGestor', uploadGestorFotoStorage.single('gestorFoto'), async (r
     const listaSetores = await Setor.findAll();
     const listaCargos = await Cargo.findAll({
         where: {
-            id: [1, 2]
+            nivel: 1
         }
     });
 
@@ -72,37 +72,35 @@ router.post('/cadGestor', uploadGestorFotoStorage.single('gestorFoto'), async (r
     /* Verificando existência do email */
     const existingGestor = await Gestor.findOne({ where: { email: req.body.gestorEmail } });
 
+    // Expressão regular para validar a senha
+    const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
     if (existingGestor) {
-        // Se o email já estiver cadastrado, retorne um erro
+        // Caso o email já exista
         res.render('signUp.ejs', {
             listaSetores: listaSetores,
             listaCargos: listaCargos,
             error:'Email já cadastrado'
         });
-    }
-
-    /* Verificando senha */
-    // Expressão regular para validar a senha
-    const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
-    // Verifique se a senha atende aos critérios
-    if (!senhaRegex.test(gestorSenha)) {
+    }else if (!senhaRegex.test(gestorSenha)) {
+        // Caso a senha não corresponda aos critérios
         res.render('signUp.ejs', {
             listaSetores: listaSetores,
             listaCargos: listaCargos,
             error: 'É preciso que a senha tenha no mínimo 8 caracteres, uma letra maiúscula e uma letra minúscula'});
+    }else{
+        const cadGestor = await Gestor.create({
+            nome: gestorNome,
+            email: gestorEmail,
+            senha: gestorSenha,
+            foto: gestorFoto,
+            idSetor: gestorSetor,
+            idCargo: gestorCargo
+        });
+
+        res.redirect('/');
     }
 
-    const cadGestor = await Gestor.create({
-        nome: gestorNome,
-        email: gestorEmail,
-        senha: gestorSenha,
-        foto: gestorFoto,
-        idSetor: gestorSetor,
-        idCargo: gestorCargo
-    });
-
-    res.redirect('/');
 });
 
 module.exports = router;

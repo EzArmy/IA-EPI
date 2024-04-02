@@ -5,4 +5,6 @@ const Setor = Db.sequelize.define('setores', {
     timestamp: false
 });
 
+//Setor.sync()
+
 module.exports = Setor;

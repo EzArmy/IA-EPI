@@ -12,7 +12,8 @@ const Colaborador = require('./module/Colaborador');
 //Router imports
 const cadastrar = require('./routes/cadastrar');
 const home = require('./routes/home');
-const addColab = require('./routes/addColab')
+const addColab = require('./routes/addColab');
+const Edit = require('./routes/edit');
 
 /////{ CONFIGURAÇÕES }//////////////////////////////////////////////////////////////////////////////////
 
@@ -44,12 +45,16 @@ app.set('view engine', 'ejs');
 /////{ ROTAS }//////////////////////////////////////////////////////////////////////////////////
 app.listen(port, () => {
     console.log(`Server on: http://localhost:${port}`);
-
 });
 
 //Rota para o a tela de login
 app.get('/', (req, res) => {
     res.render('index.ejs', { error: null });
+
+    Colaborador;
+    Gestor;
+    Setor;
+    Cargo;
 });
 
 //Fazendo verificação básica para o usuário exevutar o login
@@ -107,3 +112,6 @@ app.use('/home', home);
 
 //Rota para a tela de cadastro de colaboradores
 app.use('/home/addColab', addColab);
+
+//Rota para a tela de edição de perfil do *gestor
+app.use('/home/perfilGestor/edit', Edit);
