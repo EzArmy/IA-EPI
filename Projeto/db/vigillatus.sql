@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2024 at 06:43 PM
+-- Generation Time: Apr 03, 2024 at 04:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,8 +68,8 @@ CREATE TABLE `colaboradores` (
 --
 
 INSERT INTO `colaboradores` (`id`, `nome`, `email`, `foto`, `idSetor`, `idCargo`, `idGestor`, `createdAt`, `updatedAt`) VALUES
-(1, 'Colaborador 1', 'colaborador1@teste.com', 'mos-design-OYOXohNluvE-unsplash.jpg', 1, 4, 4, '2024-04-01 06:52:22', '2024-04-01 06:52:22'),
-(2, 'Colaborador 2', 'colaborador2@teste.com', 'neom-TA5hw14Coh4-unsplash.jpg', 1, 4, 4, '2024-04-01 07:09:04', '2024-04-01 07:09:04');
+(1, 'Colab 1', 'colab1@teste', 'visualsofdana-exEfgnSaX6A-unsplash.jpg', 1, 4, 6, '2024-04-03 02:00:39', '2024-04-03 02:00:39'),
+(2, 'Colab 2', 'colab2@teste', 'visualsofdana-exEfgnSaX6A-unsplash.jpg', 1, 4, 6, '2024-04-03 02:01:01', '2024-04-03 02:01:01');
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,7 @@ CREATE TABLE `gestores` (
 --
 
 INSERT INTO `gestores` (`id`, `nome`, `email`, `senha`, `foto`, `idSetor`, `idCargo`, `createdAt`, `updatedAt`) VALUES
-(4, 'Jefferson Wilson', 'jeffersonwilson@teste.com', 'js', 'neom-HYHYGLs-Rp8-unsplash.jpg', 1, 2, '2024-04-01 05:22:45', '2024-04-01 05:22:45');
+(6, 'Isac505', 'isac@teste', 'Isac@1234', 'laura-college-K_Na5gCmh38-unsplash.jpg', 1, 2, '2024-04-03 01:36:11', '2024-04-03 02:01:35');
 
 -- --------------------------------------------------------
 
@@ -171,7 +171,7 @@ ALTER TABLE `colaboradores`
 -- AUTO_INCREMENT for table `gestores`
 --
 ALTER TABLE `gestores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setores`
