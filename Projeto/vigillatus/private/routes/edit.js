@@ -60,16 +60,27 @@ router.post('/confirmEdit', editGestorUpload.single('gestorFoto'), async (req, r
 
     const gestorFoto = req.file ? req.file.filename : gestorInfo.foto;
 
-    //Variáveis para armazenar os nomes das pastas casdo tenha sido editada ou não
-    const oldGestorFolder = `./public/uploads/${gestorInfo.nome}`;
-    const newGestorFolder = `./public/uploads/${gestorNome}`;
+    let erroRenomeacao = false;
 
-    //Verifica a alteração no nome do gestor
+    // Renomear a pasta do gestor, se o nome foi alterado
+    if (gestorInfo.nome !== gestorNome) {
+        const oldGestorFolder = `./public/uploads/${gestorInfo.nome}`;
+        const newGestorFolder = `./public/uploads/${gestorNome}`;
 
-    if(gestorInfo.nome == gestorNome){
-        console.log('Não é necessário alterar o nome da pasta do usuário ' + gestorInfo.nome);
-    }else{
-        fs.renameSync(oldGestorFolder, newGestorFolder);
+        try {
+            // Verifica se a pasta existe antes de renomear
+            if (fs.existsSync(oldGestorFolder)) {
+                fs.renameSync(oldGestorFolder, newGestorFolder);
+            }
+        } catch (err) {
+            console.error('Erro ao renomear a pasta do gestor:', err);
+            erroRenomeacao = true;
+        }
+    }
+
+    if (erroRenomeacao) {
+        // Se ocorreu um erro ao renomear, redirecione de volta à página de perfil do gestor
+        return res.redirect('/home/perfilGestor');
     }
 
     const editGestor = await Gestor.update({
@@ -91,10 +102,10 @@ router.post('/confirmEdit', editGestorUpload.single('gestorFoto'), async (req, r
         nome: gestorNome,
         email: gestorEmail,
         foto: gestorFoto
-        // Adicione outros campos da sessão, se necessário
-    };
+    }; 
 
     res.redirect('/home/perfilGestor');
 });
+
 
 module.exports = router;
