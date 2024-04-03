@@ -1,28 +1,36 @@
+const { DataTypes, Model } = require('sequelize');
 const Db = require('./Db');
 
-const Gestor = Db.sequelize.define('gestores', {
-    nome: Db.Sequelize.DataTypes.STRING,
-    email: Db.Sequelize.DataTypes.STRING,
-    senha: Db.Sequelize.DataTypes.STRING,
-    foto: Db.Sequelize.DataTypes.STRING,
-    idSetor:{
-        type: Db.Sequelize.DataTypes.INTEGER,
+class Gestor extends Model {}
+
+Gestor.init({
+    nome: DataTypes.STRING,
+    email: DataTypes.STRING,
+    senha: DataTypes.STRING,
+    foto: DataTypes.STRING,
+    idSetor: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        references:{
+        references: {
             model: 'setores',
             key: 'id'
         }
     },
-    idCargo:{
-        type: Db.Sequelize.DataTypes.INTEGER,
+    idCargo: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: 'cargos',
             key: 'id'
         }
     }
+}, {
+    sequelize: Db.sequelize,
+    modelName: 'gestores',
+    // Configuração para deletar em cascata
+    onDelete: 'CASCADE'
 });
 
-//Gestor.sync();
+Gestor.sync();
 
 module.exports = Gestor;

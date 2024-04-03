@@ -15,8 +15,7 @@
     </div>
 
     <form action="/home/perfilGestor/edit/confirmEdit" method="post" enctype="multipart/form-data">
-        <input required placeholder="Gestor - Nome" type="text" name="gestorNome" value="<%= gestorInfo.nome %>">
-        <br>
+        <h2><%= gestorInfo.nome %></h2>
         <input required placeholder="Gestor - Email" type="email" name="gestorEmail" value="<%= gestorInfo.email %>">
         <br>
         <input required placeholder="Gestor - Senha" type="password" name="gestorSenha" value="<%= gestorInfo.senha %>">

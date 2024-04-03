@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const app = express();
-const port = '3500';
+const port = '8080';
 
 //Sequelize modules import
 const Setor = require('./module/Setor');
@@ -81,7 +81,6 @@ app.post('/login', async (req, res) => {
             } else {
                 res.render('index.ejs', { error: 'Usuário não autorizado' });
             }
-
         } else {
             res.render('index.ejs', { error: 'Senha incorreta' });
         }

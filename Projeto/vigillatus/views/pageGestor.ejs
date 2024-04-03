@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GESTOR</title>
 </head>
+
 <body>
-    
+
     <div id="loader"></div>
 
     <%- include('./partials/menu') %>
 
-    <h1><%= gestorInfo.nome %></h1>
-    <img style="width: 150px; height: 150px;" src="/uploads/<%= gestorInfo.nome %>/<%= gestorInfo.foto %>" alt="">
+        <h1>
+            <%= gestorInfo.nome %>
+        </h1>
+        <h3>
+            <%= gestorInfo.email %>
+        </h3>
+        <h3>
+            <%= gestorInfo.senha %>
+        </h3>
+        <h3>
+            <%= gestorCargo.nome %>
+        </h3>
+        <h3>
+            <%= gestorSetor.descricao %>
+        </h3>
 
-    <a href="/home/perfilGestor/edit">
-        <button>
-            Editar perfil
-        </button>
-    </a>
+        <img style="width: 150px; height: 150px;" src="/uploads/<%= gestorInfo.nome %>/<%= gestorInfo.foto %>" alt="">
+
+        <a href="/home/perfilGestor/edit">
+            <button>
+                Editar perfil
+            </button>
+        </a>
+
+        <form action="/home/perfilGestor/edit/delete" method="post">
+            <button>Delete</button>
+        </form>
 
 </body>
+
 </html>
