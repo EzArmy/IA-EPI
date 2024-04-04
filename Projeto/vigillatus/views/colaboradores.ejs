@@ -14,9 +14,9 @@
 
     <div id="loader"></div>
 
-    <h1>Colaboradores</h1>
-
     <%- include('./partials/menu') %>
+
+    <h1>Colaboradores</h1>
 
         <a href="/home/addColab">adicionar colaboradores</a>
 
@@ -24,12 +24,12 @@
 
             <div class="bg-red-500 my-2">
                 <div style="display: flex; flex-direction: row; align-items: center;">
-                    <img class="rounded-full" src="/uploads/<%= infoGestor.nome %>/colaboradores/<%= listColaborador.nome %>/<%= listColaborador.foto %>"
-                        alt="ai mds" style="width: 100px; height: 100px;">
+                    <img class="rounded-full" src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>"
+                        alt="" style="width: 100px; height: 100px;">
                     <p>
                         <%= listColaborador.nome %>
                     </p>
-                    <!-- Nâo sei como passar os req.params pora o link -->
+                    <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
                     <a href="/home/colaboradores/<%= listColaborador.id %>/<%= listColaborador.nome %>">ver info</a>
                 </div>
             </div>

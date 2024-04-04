@@ -4,7 +4,7 @@ const sequelize = new Sequelize('vigillatus', 'root', '', {
     dialect: 'mysql'
 });
 
-const Auth = async ()=>{
+/* const Auth = async ()=>{
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
@@ -13,7 +13,7 @@ const Auth = async ()=>{
       }
 }
 
-console.log(Auth());
+console.log(Auth()); */
 
 module.exports = {
     Sequelize: Sequelize,

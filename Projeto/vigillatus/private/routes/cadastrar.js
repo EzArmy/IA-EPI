@@ -14,22 +14,21 @@ const Gestor = require('../module/Gestor');
 const multer = require('multer');
 
 const gestorFotoStorage = multer.diskStorage({
-    destination: (req, file, cb)=>{
+    destination: (req, file, cb) => {
 
         const pastaGestor = './public/uploads/' + req.body.gestorNome;
-        if(!fs.existsSync(pastaGestor)){
-            fs.mkdirSync(pastaGestor, {recursive: true});
+        if (!fs.existsSync(pastaGestor)) {
+            fs.mkdirSync(pastaGestor, { recursive: true });
         }
         cb(null, pastaGestor);
-       
     },
-    filename: (req, file, cb)=>{
+    filename: (req, file, cb) => {
         const fileName = path.basename(file.originalname);
         cb(null, fileName);
     }
 });
 
-const uploadGestorFotoStorage = multer({storage: gestorFotoStorage});
+const uploadGestorFotoStorage = multer({ storage: gestorFotoStorage });
 
 /////{ ROTAS }//////////////////////////////////////////////////////////////////////////////////
 
@@ -80,15 +79,16 @@ router.post('/cadGestor', uploadGestorFotoStorage.single('gestorFoto'), async (r
         res.render('signUp.ejs', {
             listaSetores: listaSetores,
             listaCargos: listaCargos,
-            error:'Email já cadastrado'
+            error: 'Email já cadastrado'
         });
-    }else if (!senhaRegex.test(gestorSenha)) {
+    } else if (!senhaRegex.test(gestorSenha)) {
         // Caso a senha não corresponda aos critérios
         res.render('signUp.ejs', {
             listaSetores: listaSetores,
             listaCargos: listaCargos,
-            error: 'É preciso que a senha tenha no mínimo 8 caracteres, uma letra maiúscula e uma letra minúscula'});
-    }else{
+            error: 'É preciso que a senha tenha no mínimo 8 caracteres, uma letra maiúscula e uma letra minúscula'
+        });
+    } else {
         const cadGestor = await Gestor.create({
             nome: gestorNome,
             email: gestorEmail,

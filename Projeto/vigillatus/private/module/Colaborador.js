@@ -1,5 +1,9 @@
 const Db = require('./Db');
 
+//Module imports
+const Gestor = require('./Gestor');
+
+
 const Colaborador = Db.sequelize.define('colaboradores', {
     nome: Db.Sequelize.DataTypes.STRING,
     email: Db.Sequelize.DataTypes.STRING,
@@ -26,10 +30,11 @@ const Colaborador = Db.sequelize.define('colaboradores', {
         references: {
             model: 'gestores',
             key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'
     }
-})
+});
 
-//Colaborador.sync();
+/* Colaborador.sync(); */
 
 module.exports = Colaborador;

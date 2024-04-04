@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 const port = '8080';
+const fs = require('fs');
 
 //Sequelize modules import
 const Setor = require('./module/Setor');
@@ -13,7 +14,7 @@ const Colaborador = require('./module/Colaborador');
 const cadastrar = require('./routes/cadastrar');
 const home = require('./routes/home');
 const addColab = require('./routes/addColab');
-const Edit = require('./routes/edit');
+const Edit = require('./routes/gestorSettings');
 
 /////{ CONFIGURAÇÕES }//////////////////////////////////////////////////////////////////////////////////
 
@@ -59,22 +60,32 @@ app.get('/', (req, res) => {
 
 //Fazendo verificação básica para o usuário exevutar o login
 app.post('/login', async (req, res) => {
-
     const { email, senha } = req.body;
 
-    //Buscando usuário através do email
+    // Buscando usuário através do email
     const identifyUser = await Gestor.findOne({ where: { email } });
 
-    //verifica existência do usuário
+    // Verifica existência do usuário
     if (!identifyUser) {
         console.log('Usuário não encontrado');
         res.render('index.ejs', { error: 'Usuário não encontrado' });
     } else {
-        //Verifica se a senha do usuário é igual a do banco
+
+        // Verifica se a senha do usuário é igual a do banco
         if (senha == identifyUser.senha) {
-            //Verifica se o cargo do usuário é de um nível adequado para entrar
+
+            // Verifica se o cargo do usuário é de um nível adequado para entrar
             const cargo = await Cargo.findByPk(identifyUser.idCargo);
             if (cargo && cargo.nivel) {
+
+                // Renomeia a pasta do gestor para seu ID
+                const gestorPastaAntiga = './public/uploads/' + identifyUser.nome;
+                const gestorPastaNova = './public/uploads/' + identifyUser.id;
+
+                if (fs.existsSync(gestorPastaAntiga)) {
+                    fs.renameSync(gestorPastaAntiga, gestorPastaNova);
+                }
+
                 // Passando os dados do usuário na sessão
                 req.session.user = identifyUser;
                 res.redirect('/home');
@@ -85,10 +96,8 @@ app.post('/login', async (req, res) => {
             res.render('index.ejs', { error: 'Senha incorreta' });
         }
     }
-
-    Gestor;
-
 });
+
 
 // Rota para fazer logout
 app.get('/logout', (req, res) => {
@@ -97,7 +106,7 @@ app.get('/logout', (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            // Redirecionar para a página de login ou para qualquer outra página desejada
+
             res.redirect('/');
         }
     });

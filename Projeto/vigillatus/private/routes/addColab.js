@@ -16,8 +16,9 @@ const multer = require('multer');
 
 const colabFotoStorage = multer.diskStorage({
     destination: (req, file, cb)=>{
-        const infoGestor = req.session.user;
-        const pastaGestor = `./public/uploads/${infoGestor.nome}/`;
+
+        const gestorInfo = req.session.user;
+        const pastaGestor = `./public/uploads/${gestorInfo.id}/`;
         const pastaColab = pastaGestor + 'Colaboradores/' + req.body.colabNome;
 
         if(!fs.existsSync(pastaColab)){
@@ -25,8 +26,6 @@ const colabFotoStorage = multer.diskStorage({
         }
 
         cb(null, pastaColab);
-
-        console.log(infoGestor);
     },
     filename: (req, file, cb) => {
         const fileName = path.basename(file.originalname);
@@ -46,16 +45,18 @@ router.get('/', async (req,res)=>{
         }
     });
 
+    const gestorInfo = req.session.user;
+
     //caminho para as imagens apresentadas no menu
-    const imagePath = req.session.user ? `/uploads/${req.session.user.nome}/${req.session.user.foto}`:`/uploads/${req.session.user.nome}/${req.session.user.foto}`;
+    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}`:`/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
 
     res.render('addColab.ejs', {
         listaSetores:listaSetores,
         listaCargos: listaCargos,
-        imagePath
+        imagePath,
+        gestorInfo
     });
 });
-
 
 router.post('/cadColab', uploadColabFoto.single('colabFoto'), async (req,res)=>{
     const { 

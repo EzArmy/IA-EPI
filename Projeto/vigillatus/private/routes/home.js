@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
 
 //module import
 const Colaborador = require('../module/Colaborador');
@@ -7,33 +8,58 @@ const Cargo = require('../module/Cargo');
 const Setor = require('../module/Setor');
 
 router.get('/', (req, res) => {
-    const user = req.session.user;
-    const imagePath = user ? `/uploads/${user.nome}/${user.foto}` : `/uploads/${user.nome}/${user.foto}`;
-    res.render('home.ejs', { user, imagePath });
+    const gestorInfo = req.session.user;
+    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
+    res.render('home.ejs', { gestorInfo, imagePath });
 });
 
-//Rota para a página de Colaboradores
-router.get('/colaboradores', async (req, res) => {
+// Middleware para renomear as pastas dos colaboradores
+router.use('/colaboradores', async (req, res, next) => {
+    const gestorInfo = req.session.user;
 
-    const gestorId = req.session.user;
-
-    //Listando colaboradores vinculados ao gestor
+    // Listando colaboradores vinculados ao gestor
     const listColaborador = await Colaborador.findAll({
-        where: { idGestor: [gestorId.id] }
+        where: { idGestor: [gestorInfo.id] }
     });
 
-    //caminho para as imagens apresentadas no menu
-    const imagePath = req.session.user ? `/uploads/${req.session.user.nome}/${req.session.user.foto}` : `/uploads/${req.session.user.nome}/${req.session.user.foto}`;
+    // Caminho para as imagens apresentadas no menu
+    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}`: `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
 
-    const infoGestor = req.session.user;
+    // Renomear as pastas dos colaboradores
+    listColaborador.forEach(colaborador => {
+        const colabOldFolder = `./public/uploads/${gestorInfo.id}/Colaboradores/${colaborador.nome}`;
+        const colabNewFolder = `./public/uploads/${gestorInfo.id}/Colaboradores/${colaborador.id}`;
+
+        if(fs.existsSync(colabOldFolder)){
+            fs.renameSync(colabOldFolder, colabNewFolder);
+        }
+    });
+
+    // Passa para a próxima função de middleware ou rota
+    next();
+});
+
+// Rota para a página de Colaboradores
+router.get('/colaboradores', async (req, res) => {
+
+    const gestorInfo = req.session.user;
+
+    // Listando colaboradores vinculados ao gestor
+    const listColaborador = await Colaborador.findAll({
+        where: { idGestor: [gestorInfo.id] }
+    });
+
+    // Caminho para as imagens apresentadas no menu
+    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}`: `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
 
     res.render('colaboradores.ejs', {
         imagePath,
         listColaborador,
-        infoGestor
+        gestorInfo
     });
 });
 
+//Rota para a página de detalhes de um colaborador
 router.get(`/colaboradores/:id/:nome`, async (req, res) => {
 
     const colabId = req.params.id;
@@ -43,6 +69,7 @@ router.get(`/colaboradores/:id/:nome`, async (req, res) => {
         where: { id: [colabId] }
     });
 
+    //Listando cargo dos colaboradores
     const listColabCargo = await Cargo.findAll({
         where: { id: [listColabInfo.idCargo] }
     });
@@ -51,7 +78,7 @@ router.get(`/colaboradores/:id/:nome`, async (req, res) => {
     const gestorInfo = req.session.user;
 
     //caminho para as imagens apresentadas no menu
-    const imagePath = req.session.user ? `/uploads/${req.session.user.nome}/${req.session.user.foto}` : `/uploads/${req.session.user.nome}/${req.session.user.foto}`;
+    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
 
     res.render('pageColab.ejs', {
         colabId,
@@ -62,22 +89,23 @@ router.get(`/colaboradores/:id/:nome`, async (req, res) => {
     });
 });
 
+//Rota para a página de perfil do gestor
 router.get('/perfilGestor', async (req, res) => {
 
     const gestorInfo = req.session.user;
 
     //caminho para as imagens apresentadas no menu
-    const imagePath = gestorInfo ? `/uploads/${gestorInfo.nome}/${gestorInfo.foto}` : `/uploads/${gestorInfo.nome}/${gestorInfo.foto}`;
+    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
 
+    //Trazendo cargo do gestor
     const gestorCargo = await Cargo.findOne({
         where: {id:[gestorInfo.idCargo]}
     });
 
+    //Trazendo setor do gestor
     const gestorSetor = await Setor.findOne({
         where: {id:[gestorInfo.idSetor]}
     });
-
-    console.log(gestorInfo.idCargo);
 
     res.render('pageGestor.ejs', {
         gestorInfo,
