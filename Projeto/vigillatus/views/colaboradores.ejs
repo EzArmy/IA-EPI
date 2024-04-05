@@ -10,31 +10,46 @@
     <title>Colaboradores</title>
 </head>
 
-<body>
+<body class="container grid grid-cols-4">
 
     <div id="loader"></div>
 
     <%- include('./partials/menu') %>
 
-    <h1>Colaboradores</h1>
+        <div class="col-start-2 col-span-3">
 
-        <a href="/home/addColab">adicionar colaboradores</a>
+            <h1>Colaboradores</h1>
 
-        <% listColaborador.forEach((listColaborador)=>{ %>
+            <a href="/home/addColab">adicionar colaboradores</a>
 
-            <div class="bg-red-500 my-2">
-                <div style="display: flex; flex-direction: row; align-items: center;">
-                    <img class="rounded-full" src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>"
-                        alt="" style="width: 100px; height: 100px;">
-                    <p>
-                        <%= listColaborador.nome %>
-                    </p>
-                    <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
-                    <a href="/home/colaboradores/<%= listColaborador.id %>/<%= listColaborador.nome %>">ver info</a>
-                </div>
+            <div class="grid grid-cols-2 gap-x-2 gap-y-2">
+
+                <% listColaborador.forEach((listColaborador)=>{ %>
+                    
+                    <div class="bg-red-500 my-2">
+                        <div style="display: flex; flex-direction: row; align-items: center;">
+                            <% if(listColaborador.foto == null){ %>
+                            <img class="rounded-full" src="/images/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
+                            <% } else { %>
+                                <img class="rounded-full"
+                                src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>"
+                                alt="" style="width: 100px; height: 100px;">
+                            <% } %>
+                            
+                            <p>
+                                <%= listColaborador.nome %>
+                            </p>
+                            <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
+                            <a href="/home/colaboradores/<%= listColaborador.id %>/<%= listColaborador.nome %>">
+                                ver info
+                            </a>
+                        </div>
+                    </div>
+
+                    <% }); %>
             </div>
 
-            <% }); %>
+        </div>
 </body>
 
 </html>

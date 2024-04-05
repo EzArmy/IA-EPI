@@ -14,7 +14,8 @@ const Colaborador = require('./module/Colaborador');
 const cadastrar = require('./routes/cadastrar');
 const home = require('./routes/home');
 const addColab = require('./routes/addColab');
-const Edit = require('./routes/gestorSettings');
+const gestorEdit = require('./routes/gestorSettings');
+const colabEdit = require('./routes/colabSettings');
 
 /////{ CONFIGURAÇÕES }//////////////////////////////////////////////////////////////////////////////////
 
@@ -51,7 +52,6 @@ app.listen(port, () => {
 //Rota para o a tela de login
 app.get('/', (req, res) => {
     res.render('index.ejs', { error: null });
-
     Colaborador;
     Gestor;
     Setor;
@@ -122,4 +122,7 @@ app.use('/home', home);
 app.use('/home/addColab', addColab);
 
 //Rota para a tela de edição de perfil do *gestor
-app.use('/home/perfilGestor/edit', Edit);
+app.use('/home/perfilGestor/edit', gestorEdit);
+
+//Rota para a tela de edição de perfil do Colaborador
+app.use('/home/colaboradores/:id/:nome/editColab', colabEdit);

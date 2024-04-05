@@ -8,8 +8,14 @@ const Cargo = require('../module/Cargo');
 const Setor = require('../module/Setor');
 
 router.get('/', (req, res) => {
+
     const gestorInfo = req.session.user;
-    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
+
+    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+    
+    // Se imagePath for null ou vazio, define a imagem padrão
+    imagePath = imagePath || '/images/profile/default.jpg';
+
     res.render('home.ejs', { gestorInfo, imagePath });
 });
 
@@ -21,9 +27,6 @@ router.use('/colaboradores', async (req, res, next) => {
     const listColaborador = await Colaborador.findAll({
         where: { idGestor: [gestorInfo.id] }
     });
-
-    // Caminho para as imagens apresentadas no menu
-    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}`: `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
 
     // Renomear as pastas dos colaboradores
     listColaborador.forEach(colaborador => {
@@ -49,8 +52,10 @@ router.get('/colaboradores', async (req, res) => {
         where: { idGestor: [gestorInfo.id] }
     });
 
-    // Caminho para as imagens apresentadas no menu
-    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}`: `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
+    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+    
+    // Se imagePath for null ou vazio, define a imagem padrão
+    imagePath = imagePath || '/images/profile/default.jpg';
 
     res.render('colaboradores.ejs', {
         imagePath,
@@ -77,8 +82,10 @@ router.get(`/colaboradores/:id/:nome`, async (req, res) => {
     //Colentando dados do gestor logado
     const gestorInfo = req.session.user;
 
-    //caminho para as imagens apresentadas no menu
-    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
+   let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+    
+    // Se imagePath for null ou vazio, define a imagem padrão
+    imagePath = imagePath || '/images/profile/default.jpg';
 
     res.render('pageColab.ejs', {
         colabId,
@@ -94,9 +101,11 @@ router.get('/perfilGestor', async (req, res) => {
 
     const gestorInfo = req.session.user;
 
-    //caminho para as imagens apresentadas no menu
-    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : `/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
-
+    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+    
+    // Se imagePath for null ou vazio, define a imagem padrão
+    imagePath = imagePath || '/images/profile/default.jpg';
+    
     //Trazendo cargo do gestor
     const gestorCargo = await Cargo.findOne({
         where: {id:[gestorInfo.idCargo]}

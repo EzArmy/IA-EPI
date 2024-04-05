@@ -66,7 +66,26 @@ router.post('/cadGestor', uploadGestorFotoStorage.single('gestorFoto'), async (r
         gestorCargo
     } = req.body;
 
-    const gestorFoto = req.file.filename;
+    let gestorFoto;
+
+    // Verifica se a foto do gestor foi enviada
+    if (req.file) {
+        gestorFoto = req.file.filename;
+    } else {
+        // Se não houver foto, define como null e define uma imagem padrão
+        gestorFoto = null;
+        // Caminho da imagem padrão
+        const defaultImagePath = 'default.jpg';
+        // Verifica se o arquivo de imagem padrão existe
+        if (fs.existsSync(defaultImagePath)) {
+            // Usa a imagem padrão
+            gestorFoto = defaultImagePath;
+        } else {
+            console.log('Imagem padrão não encontrada');
+            // Se não encontrar a imagem padrão, você pode lidar com isso de acordo com o seu caso
+            // Por exemplo, pode enviar uma mensagem de erro ou redirecionar para uma página de erro
+        }
+    }
 
     /* Verificando existência do email */
     const existingGestor = await Gestor.findOne({ where: { email: req.body.gestorEmail } });
@@ -102,5 +121,6 @@ router.post('/cadGestor', uploadGestorFotoStorage.single('gestorFoto'), async (r
     }
 
 });
+
 
 module.exports = router;

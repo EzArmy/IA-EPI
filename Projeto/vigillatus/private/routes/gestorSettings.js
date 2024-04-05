@@ -12,7 +12,15 @@ const Gestor = require('../module/Gestor')
 /// CONFIGURAÇÕES /////////////////////////////////////////
 const gestorFotoStorage = multer.diskStorage({
     destination: (req, file, cb) => {
+
         const gestorFolder = './public/uploads/' + req.session.user.id;
+
+        if (!fs.existsSync(gestorFolder)) {
+            fs.mkdirSync(gestorFolder, { recursive: true });
+        }
+
+        console.log("Destination path:", gestorFolder);
+
         cb(null, gestorFolder);
     },
     filename: (req, file, cb) => {
@@ -23,7 +31,7 @@ const gestorFotoStorage = multer.diskStorage({
 
 const editGestorUpload = multer({
     storage: gestorFotoStorage
-})
+});
 
 /// ROTAS /////////////////////////////////////////
 
@@ -102,7 +110,7 @@ router.post('/delete', async (req, res) => {
         });
 
         // Excluir a pasta do gestor
-        const pastaGestor = './public/uploads/' + gestorInfo.nome;
+        const pastaGestor = './public/uploads/' + gestorInfo.id;
         if (fs.existsSync(pastaGestor)) {
             fs.rmdirSync(pastaGestor, { recursive: true });
         }

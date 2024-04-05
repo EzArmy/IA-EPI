@@ -13,6 +13,7 @@ const Colaborador = require('../module/Colaborador');
 
 //Multer config
 const multer = require('multer');
+const { error } = require('console');
 
 const colabFotoStorage = multer.diskStorage({
     destination: (req, file, cb)=>{
@@ -47,18 +48,36 @@ router.get('/', async (req,res)=>{
 
     const gestorInfo = req.session.user;
 
-    //caminho para as imagens apresentadas no menu
-    const imagePath = gestorInfo ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}`:`/uploads/${gestorInfo.id}/${gestorInfo.foto}`;
+    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+    
+    // Se imagePath for null ou vazio, define a imagem padrão
+    imagePath = imagePath || '/images/profile/default.jpg';
 
     res.render('addColab.ejs', {
         listaSetores:listaSetores,
         listaCargos: listaCargos,
         imagePath,
-        gestorInfo
+        gestorInfo,
+        error:null
     });
 });
 
 router.post('/cadColab', uploadColabFoto.single('colabFoto'), async (req,res)=>{
+
+    const listaSetores = await Setor.findAll();
+    const listaCargos = await Cargo.findAll({
+        where:{
+            nivel: 2
+        }
+    });
+
+    const gestorInfo = req.session.user;
+
+    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+    
+    // Se imagePath for null ou vazio, define a imagem padrão
+    imagePath = imagePath || '/images/profile/default.jpg';
+    
     const { 
         colabNome, 
         colabEmail, 
@@ -66,7 +85,31 @@ router.post('/cadColab', uploadColabFoto.single('colabFoto'), async (req,res)=>{
         colabCargo
     } = req.body;
 
-    const colabFoto = req.file.filename;
+    let colabFoto;
+
+    if(req.file){
+        colabFoto = req.file.filename;
+    } else {
+        colabFoto = null;
+        const defaultImagePath = '/images/profile/default.jpg';
+
+        if (fs.existsSync(defaultImagePath)) {
+            colabFoto = defaultImagePath;
+        } else {
+            console.log('Imagem padrão não encontrada');
+        }
+    }
+
+     // Verificar se todos os campos obrigatórios estão preenchidos
+    if (!colabNome || !colabEmail || !colabSetor || !colabCargo) {
+        return res.render('addColab.ejs', { error: 'Todos os campos são obrigatórios', listaSetores, listaCargos, imagePath, gestorInfo });
+    }
+
+    // Validar o formato do e-mail
+   /*  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(colabEmail)) {
+        return res.render('addColab.ejs', { error: 'E-mail inválido', listaSetores, listaCargos, imagePath, gestorInfo });
+    } */
 
     try {
     const cadColaborador = await Colaborador.create({
@@ -82,6 +125,7 @@ router.post('/cadColab', uploadColabFoto.single('colabFoto'), async (req,res)=>{
 
     } catch (error) {
         console.error('Erro:', error);
+        return res.render('addColab.ejs', { error: 'Erro ao cadastrar colaborador', listaSetores, listaCargos, imagePath, gestorInfo });
     }
 
 });

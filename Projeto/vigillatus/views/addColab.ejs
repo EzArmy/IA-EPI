@@ -13,8 +13,17 @@
 
     <%- include('./partials/menu') %>
 
+    <!-- Exibir mensagem de erro se existir -->
+    <% if (error) { %>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><%= error %></p>
+            </div>
+        </div>
+    <% } %>
+
     <form action="/home/addColab/cadColab" method="post" enctype="multipart/form-data">
-        <input placeholder="Colaborador - Nome" type="text" name="colabNome" id="">
+        <input  placeholder="Colaborador - Nome" type="text" name="colabNome" id="">
         <br>
         <input placeholder="Colaborador - Email" type="email" name="colabEmail" id="">
         <br>
