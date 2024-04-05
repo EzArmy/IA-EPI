@@ -45,16 +45,22 @@ router.get('/', async (req, res) => {
         }
     });
 
+    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+
+    // Se imagePath for null ou vazio, define a imagem padrão
+    imagePath = imagePath || '/images/profile/default.jpg';
+
     res.render('editGestor.ejs', {
         error: null,
         listaSetores: listaSetores,
         listaCargos: listaCargos,
-        gestorInfo: gestorInfo
+        gestorInfo: gestorInfo,
+        imagePath
     });
 });
 
 //Rota para editar o perfil do gestor
-router.post('/confirmEdit', editGestorUpload.single('gestorFoto'), async (req, res) => {
+router.post('/gestorUpdate', editGestorUpload.single('gestorFoto'), async (req, res) => {
 
     const {
         gestorNome,

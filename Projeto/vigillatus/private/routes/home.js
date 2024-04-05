@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     const gestorInfo = req.session.user;
 
     let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
-    
+
     // Se imagePath for null ou vazio, define a imagem padrão
     imagePath = imagePath || '/images/profile/default.jpg';
 
@@ -33,7 +33,7 @@ router.use('/colaboradores', async (req, res, next) => {
         const colabOldFolder = `./public/uploads/${gestorInfo.id}/Colaboradores/${colaborador.nome}`;
         const colabNewFolder = `./public/uploads/${gestorInfo.id}/Colaboradores/${colaborador.id}`;
 
-        if(fs.existsSync(colabOldFolder)){
+        if (fs.existsSync(colabOldFolder)) {
             fs.renameSync(colabOldFolder, colabNewFolder);
         }
     });
@@ -53,7 +53,7 @@ router.get('/colaboradores', async (req, res) => {
     });
 
     let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
-    
+
     // Se imagePath for null ou vazio, define a imagem padrão
     imagePath = imagePath || '/images/profile/default.jpg';
 
@@ -82,8 +82,8 @@ router.get(`/colaboradores/:id/:nome`, async (req, res) => {
     //Colentando dados do gestor logado
     const gestorInfo = req.session.user;
 
-   let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
-    
+    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+
     // Se imagePath for null ou vazio, define a imagem padrão
     imagePath = imagePath || '/images/profile/default.jpg';
 
@@ -102,18 +102,18 @@ router.get('/perfilGestor', async (req, res) => {
     const gestorInfo = req.session.user;
 
     let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
-    
+
     // Se imagePath for null ou vazio, define a imagem padrão
     imagePath = imagePath || '/images/profile/default.jpg';
-    
+
     //Trazendo cargo do gestor
     const gestorCargo = await Cargo.findOne({
-        where: {id:[gestorInfo.idCargo]}
+        where: { id: [gestorInfo.idCargo] }
     });
 
     //Trazendo setor do gestor
     const gestorSetor = await Setor.findOne({
-        where: {id:[gestorInfo.idSetor]}
+        where: { id: [gestorInfo.idSetor] }
     });
 
     res.render('pageGestor.ejs', {

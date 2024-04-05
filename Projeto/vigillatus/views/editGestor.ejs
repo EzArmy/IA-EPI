@@ -14,7 +14,7 @@
         <%= error %>
     </div>
 
-    <form action="/home/perfilGestor/edit/confirmEdit" method="post" enctype="multipart/form-data">
+    <form action="/home/perfilGestor/edit/gestorUpdate" method="post" enctype="multipart/form-data">
         <input required placeholder="Gestor - Nome" type="text" name="gestorNome" value="<%= gestorInfo.nome %>">
         <br>
         <input required placeholder="Gestor - Email" type="email" name="gestorEmail" value="<%= gestorInfo.email %>">
