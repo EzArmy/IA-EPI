@@ -11,7 +11,7 @@
 
 <body class="h-screen w-screen flex items-center justify-center bg-white">    
     
-    <div class="bg-gray-100 shadow-md rounded-md p-8 items-center justify-center md:flex">
+    <div class="bg-gray-100 shadow-md rounded-md p-8 items-center justify-center md:flex mx-4 my-4">
 
         <img src="/img/logo.png" alt="Logo" class="h-32">
 
@@ -22,13 +22,13 @@
             <form action="/cadastrar/cadGestor" method="post" enctype="multipart/form-data">
 
                 <div class="py-2">
-                    <input required placeholder="Gestor - Nome" type="text" name="gestorNome" id="" class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none" >
+                    <input required placeholder="Nome Completo" type="text" name="gestorNome" id="" class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none" >
                 </div>               
                 <div class="py-2">
-                    <input required placeholder="Gestor - Email" type="email" name="gestorEmail" id=""  class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none">
+                    <input required placeholder="Email" type="email" name="gestorEmail" id=""  class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none">
                 </div>                
                 <div class="py-2">
-                    <input required placeholder="Gestor - Senha" type="password" name="gestorSenha" id=""  class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none">
+                    <input required placeholder="Senha" type="password" name="gestorSenha" id=""  class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none">
                 </div>                
                 <div class="py-2">
                     <input placeholder="Gestor - Foto de perfil" type="file" name="gestorFoto" id="">
@@ -38,7 +38,7 @@
                     <select required name="gestorSetor" id="" class="w-full">
         
                         <option selected disabled>
-                            ESCOLHA UM SETOR
+                            Setor
                         </option>
             
                         <% listaSetores.forEach((listaSetores)=>{ %>
@@ -54,7 +54,7 @@
                 <div class="py-2">
                     <select required name="gestorCargo" class="w-full">
         
-                        <option selected disabled>ESCOLHA UM CARGO</option>
+                        <option selected disabled>Cargo</option>
             
                         <% listaCargos.forEach((listaCargos)=>{ %>
             
@@ -74,7 +74,7 @@
             </form>
 
                 <div class="py-2">
-                    <a href="/">login</a>
+                    <p>Voltar ao <a href="/">login</a></p>
                 </div>             
             </div>
 
