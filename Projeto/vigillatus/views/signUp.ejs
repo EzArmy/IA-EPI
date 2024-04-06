@@ -4,60 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Cadastrar</title>
 </head>
 
-<body>
-    <h1>CADASTRAR</h1>
+<body class="h-screen w-screen flex items-center justify-center bg-white">    
+    
+    <div class="bg-gray-100 shadow-md rounded-md p-8 items-center justify-center md:flex">
 
-    <div>
-        <%= error %>
+        <img src="/img/logo.png" alt="Logo" class="h-32">
+
+        <div class="">
+
+            <h1 class="text-center mt-4 md:mt-0">CADASTRO</h1>    
+
+            <form action="/cadastrar/cadGestor" method="post" enctype="multipart/form-data">
+
+                <div class="py-2">
+                    <input required placeholder="Gestor - Nome" type="text" name="gestorNome" id="" class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none" >
+                </div>               
+                <div class="py-2">
+                    <input required placeholder="Gestor - Email" type="email" name="gestorEmail" id=""  class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none">
+                </div>                
+                <div class="py-2">
+                    <input required placeholder="Gestor - Senha" type="password" name="gestorSenha" id=""  class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none">
+                </div>                
+                <div class="py-2">
+                    <input placeholder="Gestor - Foto de perfil" type="file" name="gestorFoto" id="">
+                </div>     
+
+                <div class="py-2">
+                    <select required name="gestorSetor" id="" class="w-full">
+        
+                        <option selected disabled>
+                            ESCOLHA UM SETOR
+                        </option>
+            
+                        <% listaSetores.forEach((listaSetores)=>{ %>
+            
+                            <option value="<%= listaSetores.id %>">
+                                <%= listaSetores.descricao %>
+                            </option>
+            
+                            <% }); %>
+                    </select>
+                </div>  
+
+                <div class="py-2">
+                    <select required name="gestorCargo" class="w-full">
+        
+                        <option selected disabled>ESCOLHA UM CARGO</option>
+            
+                        <% listaCargos.forEach((listaCargos)=>{ %>
+            
+                            <option value="<%= listaCargos.id %>">
+                                <%= listaCargos.nome %>
+                            </option>
+            
+                            <% }); %>
+            
+                    </select>        
+                </div>
+                
+                <div class="py-2">
+                    <input type="submit" value="Cadastrar" class="w-full text-black border-double border-4 bg-white hover:border-solid">
+                </div>
+                
+            </form>
+
+                <div class="py-2">
+                    <a href="/">login</a>
+                </div>             
+            </div>
+
+            <div>
+                <%= error %>
+            </div>
+
+        </div>        
     </div>
-
-    <form action="/cadastrar/cadGestor" method="post" enctype="multipart/form-data">
-        <input required placeholder="Gestor - Nome" type="text" name="gestorNome" id="">
-        <br>
-        <input required placeholder="Gestor - Email" type="email" name="gestorEmail" id="">
-        <br>
-        <input required placeholder="Gestor - Senha" type="password" name="gestorSenha" id="">
-        <br>
-        <input placeholder="Gestor - Foto de perfil" type="file" name="gestorFoto" id="">
-        <br>
-        <select required name="gestorSetor" id="">
-
-            <option selected disabled>
-                ESCOLHA UM SETOR
-            </option>
-
-            <% listaSetores.forEach((listaSetores)=>{ %>
-
-                <option value="<%= listaSetores.id %>">
-                    <%= listaSetores.descricao %>
-                </option>
-
-                <% }); %>
-        </select>   
-        <br>
-        <select required name="gestorCargo">
-
-            <option selected disabled>ESCOLHA UM CARGO</option>
-
-            <% listaCargos.forEach((listaCargos)=>{ %>
-
-                <option value="<%= listaCargos.id %>">
-                    <%= listaCargos.nome %>
-                </option>
-
-                <% }); %>
-
-        </select>
-        <br>
-        <input type="submit" value="Cadastrar">
-    </form>
-
-    <br><br>
-    <a href="/">login</a>
 </body>
-
 </html>
