@@ -8,44 +8,46 @@
     <title>Login</title>
 </head>
 
-<body class="h-screen w-screen flex items-center justify-center bg-gray-100">
+<body class="h-screen w-screen flex items-center justify-center bg-white">        
 
-    <div class="bg-white shadow-md rounded-md p-8 w-96">
-
-        <img src="/img/logo.png" alt="Logo" class="pb-5">
-
-        <h1 class="text-center">Painel</h1>    
-
-        <form action="/login" method="post">
-            <div class="py-4">
-                <input placeholder="Email" type="email" name="email" id="" class="w-full bg-gray-50 border border-gray-base placegolder-gray-300 focus:outline-none">
-            </div>
-            <div class="py-4">
-                <input placeholder="Senha" type="password" name="senha" id="" class="w-full bg-gray-50 border border-gray-base placegolder-gray-300 focus:outline-none">
-            </div>            
-
-            <div class="py-4">
-                <input type="submit" value="Login" class="w-full text-black border-double border-4 bg-white hover:bg-gray-200 py-1">
-            </div>
+    <div class="bg-gray-100 shadow-md rounded-md p-8 md:flex md:h-80 items-center justify-center mx-4 my-4">  
             
-        </form>
-
-
-        <!-- Exibir mensagem de erro se existir -->
-        <% if (error) { %>
-            <div class="card">
-             <div class="card-body">
-                    <p class="card-text"><%= error %></p>
-             </div>
-            </div>
-        <% } %>
-
-
-        <div class="py-2">
-            <a href="/cadastrar">Cadastrar</a>
-        </div>      
+        <img src="/img/logo.png" alt="Logo" class="h-32">
+    
+        <div class="md:w-80">    
+            <h1 class="text-center font-medium mt-4">Painel Administrativo</h1>
+            <h2 class="text-center">Login</h2>  
+    
+            <form action="/login" method="post">
+                <div class="py-4">
+                    <input placeholder="Email" type="email" name="email" id="" class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none">
+                </div>
+                <div class="py-4">
+                    <input placeholder="Senha" type="password" name="senha" id="" class="w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none">
+                </div>            
+    
+                <div class="py-4">
+                    <input type="submit" value="Acessar" class="w-full text-black border-double border-4 bg-white hover:border-solid">
+                </div>
+                
+            </form>
     
     
+            <!-- Exibir mensagem de erro se existir -->
+            <% if (error) { %>
+                <div class="card">
+                 <div class="card-body">
+                        <p class="card-text text-red-500 mb-2"><%= error %></p>
+                 </div>
+                </div>
+            <% } %>
+    
+    
+            <div class="">
+                <a href="/cadastrar">Cadastrar</a>
+            </div>    
+        
+        </div>
     </div>
 </body>
 </html>
