@@ -1,7 +1,9 @@
-.botao {    
+.bgcolormain {    
     background-color: #4b7296;
     
-}.hover:hover{
+}
+
+.hover:hover{
     background-color: #6c859c;
 }
 
