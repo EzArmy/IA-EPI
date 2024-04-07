@@ -1,31 +1,45 @@
 <aside class="col-start-1 h-screen flex flex-col justify-between">
-    <ul class="flex flex-col justify-around h-full">
-        <li>
+
+    <span class="text-3xl cursor-pointer mt-1 mx-2 md:hidden block">
+        <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+      </span>
+    </div>
+
+    <script>
+        function Menu(e){
+          let list = document.querySelector('ul');
+          e.name === 'menu' ? (e.name = "close",list.classList.add('top-[80px]') , list.classList.add('opacity-100')) :( e.name = "menu" ,list.classList.remove('top-[80px]'),list.classList.remove('opacity-100'))
+        }
+      </script>
+
+    <ul class="flex flex-col justify-around md:flex z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+        
+        <li class="mx-4 my-10 mt-0 md:mt-20">
             <a href="/home">
                 Home
             </a>
         </li>
-        <li>
+        <li class="mx-4 my-10">
             <a href="#">
                 Câmeras
             </a>
         </li>
-        <li>
+        <li class="mx-4 my-10">
             <a href="#">
                 Histórico
             </a>
         </li>
-        <li>
+        <li class="mx-4 my-10">
             <a href="/home/colaboradores">
                 Colaboradores
             </a>
         </li>
-        <li>
+        <li class="mx-4 my-10">
             <a href="#">
                 Configurações
             </a>
         </li>
-        <li>
+        <li class="mx-4 my-10">
             <a href="#">
                 Dashboard
             </a>
