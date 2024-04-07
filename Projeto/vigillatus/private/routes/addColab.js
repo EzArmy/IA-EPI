@@ -51,7 +51,7 @@ router.get('/', async (req,res)=>{
     let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
     
     // Se imagePath for null ou vazio, define a imagem padrão
-    imagePath = imagePath || '/images/profile/default.jpg';
+    imagePath = imagePath || '/img/profile/default.jpg';
 
     res.render('addColab.ejs', {
         listaSetores:listaSetores,
@@ -76,7 +76,7 @@ router.post('/cadColab', uploadColabFoto.single('colabFoto'), async (req,res)=>{
     let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
     
     // Se imagePath for null ou vazio, define a imagem padrão
-    imagePath = imagePath || '/images/profile/default.jpg';
+    imagePath = imagePath || '/img/profile/default.jpg';
     
     const { 
         colabNome, 
@@ -91,7 +91,7 @@ router.post('/cadColab', uploadColabFoto.single('colabFoto'), async (req,res)=>{
         colabFoto = req.file.filename;
     } else {
         colabFoto = null;
-        const defaultImagePath = '/images/profile/default.jpg';
+        const defaultImagePath = '/img/profile/default.jpg';
 
         if (fs.existsSync(defaultImagePath)) {
             colabFoto = defaultImagePath;

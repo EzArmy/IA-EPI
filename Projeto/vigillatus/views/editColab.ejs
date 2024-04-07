@@ -11,10 +11,10 @@
 
     <h1>Editar colaborador</h1>
 
-    <form action="/home/colaboradores/:id/:nome/editColab/colabUpdate" method="post" enctype="multipart/form-data">
-        <input value="<%= colaborador.nome %>"  placeholder="Colaborador - Nome" type="text" name="colabNome" id="">
+    <form action="/home/colaboradores/<%= findColab.id %>/editColab/colabUpdate" method="post" enctype="multipart/form-data">
+        <input value="<%= findColab.nome %>"  placeholder="Colaborador - Nome" type="text" name="colabNome" id="">
         <br>
-        <input value="<%= colaborador.email %>" placeholder="Colaborador - Email" type="email" name="colabEmail" id="">
+        <input value="<%= findColab.email %>" placeholder="Colaborador - Email" type="email" name="colabEmail" id="">
         <br>
         <select name="colabSetor" id="">
             <option disabled selected>

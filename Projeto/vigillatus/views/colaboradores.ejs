@@ -29,7 +29,7 @@
                     <div class="bg-red-500 my-2">
                         <div style="display: flex; flex-direction: row; align-items: center;">
                             <% if(listColaborador.foto == null){ %>
-                            <img class="rounded-full" src="/images/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
+                            <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
                             <% } else { %>
                                 <img class="rounded-full"
                                 src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>"
@@ -40,7 +40,7 @@
                                 <%= listColaborador.nome %>
                             </p>
                             <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
-                            <a href="/home/colaboradores/<%= listColaborador.id %>/<%= listColaborador.nome %>">
+                            <a href="/home/colaboradores/<%= listColaborador.id %>/">
                                 ver info
                             </a>
                         </div>

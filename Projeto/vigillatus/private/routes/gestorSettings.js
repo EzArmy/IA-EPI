@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
     let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
 
     // Se imagePath for null ou vazio, define a imagem padrão
-    imagePath = imagePath || '/images/profile/default.jpg';
+    imagePath = imagePath || '/img/profile/default.jpg';
 
     res.render('editGestor.ejs', {
         error: null,

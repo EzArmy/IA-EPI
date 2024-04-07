@@ -124,5 +124,5 @@ app.use('/home/addColab', addColab);
 //Rota para a tela de edição de perfil do *gestor
 app.use('/home/perfilGestor/edit', gestorEdit);
 
-//Rota para a tela de edição de perfil do Colaborador
-app.use('/home/colaboradores/:id/:nome/editColab', colabEdit);
+/* //Rota para a tela de edição de perfil do Colaborador
+app.use('/:id/editColab', colabEdit); */

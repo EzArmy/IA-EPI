@@ -22,7 +22,7 @@
     <%listColabInfo.forEach((listColabInfo)=>{ %>
 
         <% if(listColabInfo.foto == null){ %>
-            <img style="width: 100px; height: 100px;" src="/images/profile/default.jpg" alt="imagem de <%= listColabInfo.nome %>">
+            <img style="width: 100px; height: 100px;" src="/img/profile/default.jpg" alt="imagem de <%= listColabInfo.nome %>">
         <% } else { %>
 
         <img style="width: 100px; height: 100px;" src="/uploads/<%= gestorInfo.nome %>/colaboradores/<%= listColabInfo.nome %>/<%= listColabInfo.foto %>" alt="imagem de <%= listColabInfo.nome %>">
@@ -35,12 +35,17 @@
         <h4><%= listColabInfo.nome %></h4>
     <% }); %>
     
-    <p>COM INFORMAÇÕES NO LINK:</p>
     <% listColabInfo.forEach((listColabInfo)=>{ %>
-        <a href="/home/colaboradores/<%= listColabInfo.id %>/<%= listColabInfo.nome %>/editColab">
+        <a href="editColab">
             Editar perfil de colaborador
         </a>
     <% }); %>   
+
+    <form action="colabDelete" method="post">
+        <button type="submit">
+            Deletar colaborador
+        </button>
+    </form>
 
 </body>
 </html>

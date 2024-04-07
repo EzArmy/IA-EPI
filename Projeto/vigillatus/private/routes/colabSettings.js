@@ -30,28 +30,30 @@ const colabFotoStorage = multer.diskStorage({
 const uploadColabFoto = multer({storage: colabFotoStorage});
 
 /* Rotas */
-router.get("/", async (req, res)=>{
+router.get('/', async (req, res) => {
+    const colabId = req.params.id;
 
-    const gestorInfo = req.session.user;
+    try {
+        const listColabInfo = await Colaborador.findByPk(colabId);
+        const listaSetores = await Setor.findAll();
+        const listaCargos = await Cargo.findAll({ where: { nivel: 2 } });
 
-    const listaSetores = await Setor.findAll();
-    const listaCargos = await Cargo.findAll({
-        where:{
-            nivel: 2
-        }
-    });
+        const gestorInfo = req.session.user;
+        let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+        imagePath = imagePath || '/img/profile/default.jpg';
 
-    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+        /* res.render('editColab.ejs', {
+            listColabInfo,
+            listaSetores,
+            listaCargos,
+            imagePath,
+            gestorInfo
+        }); */
 
-    // Se imagePath for null ou vazio, define a imagem padrão
-    imagePath = imagePath || '/images/profile/default.jpg';
-
-    res.render('editColab.ejs', {
-        listaSetores,
-        listaCargos,
-        imagePath,
-        gestorInfo
-    });
+        res.redirect('/bolsonaro/editColab')
+    } catch (error) {
+        console.error('Erro:', error);
+    }
 });
 
 router.post('/colabUpdate', uploadColabFoto.single('colabFoto'), async (req,res)=>{
@@ -68,7 +70,7 @@ router.post('/colabUpdate', uploadColabFoto.single('colabFoto'), async (req,res)
     let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
     
     // Se imagePath for null ou vazio, define a imagem padrão
-    imagePath = imagePath || '/images/profile/default.jpg';
+    imagePath = imagePath || '/img/profile/default.jpg';
     
     const { 
         colabNome, 
@@ -83,7 +85,7 @@ router.post('/colabUpdate', uploadColabFoto.single('colabFoto'), async (req,res)
         colabFoto = req.file.filename;
     } else {
         colabFoto = null;
-        const defaultImagePath = '/images/profile/default.jpg';
+        const defaultImagePath = '/img/profile/default.jpg';
 
         if (fs.existsSync(defaultImagePath)) {
             colabFoto = defaultImagePath;
