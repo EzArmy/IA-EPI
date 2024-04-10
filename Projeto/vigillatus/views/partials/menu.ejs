@@ -15,7 +15,7 @@
     <ul class="flex flex-col justify-around z-10 static z-auto bgcolormain h-full w-full md:opacity-100 opacity-0 transition-all ease-in duration-500">
 
         <div class="mx-auto">
-            <img src="/img/logo2.png" alt="Logo" class="w-auto">
+            <img src="/img/logo2.png" alt="Logo" class="h-full md:h-22">
         </div>            
                
         <div class="flex mx-5">
@@ -86,13 +86,14 @@
         </div>
 
         <a href="/home/perfilGestor">
-            <div class="flex flex-row mx-5">
+            <div class="flex flex-row mx-5 text-white font-medium">
                 <img src="<%= imagePath %>" style='width: 50px; height: 50px; border-radius: 100%;' alt="<%= gestorInfo.name %>">
-                <div>
+                
+                <div class="pl-4">
                     <p>
                         <%= gestorInfo.nome %>
                     </p>
-                    <a href="/logout">sair</a>
+                    <a href="/logout" class="">Sair</a>
                 </div>
             </div>
         </a>        
