@@ -16,15 +16,20 @@
     <title>Home</title>
 </head>
 
-<body class="container grid grid-cols-4">
+<body class="">
     <div id="loader"></div>
 
-    <%- include('./partials/menu', {gestorInfo: gestorInfo}) %>
+    
+    <div class="flex">  
 
+        <%- include('./partials/menu', {gestorInfo: gestorInfo}) %> 
+            
+        <%- include('./partials/header', {gestorInfo: gestorInfo}) %>
 
-        <div class="col-start-2 col-span-3">
-            <h1 style="border: 2px solid black">Home</h1>
-        </div>      
+               
+        
+           
+    </div>    
 
 </body>
 
