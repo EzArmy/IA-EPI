@@ -73,7 +73,8 @@
 
 
 
-                                <div class="flex">
+                                <div class="flex flex-row">
+                                    <p>Digite corretamente seu nome para que possa finalmente deletar seu perfil ._.)</p>
                                     <input id="confirmInput" placeholder="<%= gestorInfo.nome %>" type="text"
                                         oninput="checkInput()">
                                 </div>
@@ -83,7 +84,7 @@
                                         Sim, quero deletar minhas informações 😠😡
                                     </button>
 
-                                    <button>
+                                    <button onclick="closeModal()">
                                         Não, não vou deletar minhas informações 😇
                                     </button>
                                 </div>
@@ -98,6 +99,7 @@
     function checkInput() {
         /* Armazenando o nome digitado no input */
         var confirmInput = document.getElementById("confirmInput").value;
+
         /* Armazenando nome do gestor */
         var gestorName = "<%= gestorInfo.nome %>";
 
@@ -105,14 +107,23 @@
         var delBtn = document.getElementById('delBtn');
 
         /* Estilização para caso o nome seja escrito corretamente */
-        if (confirmInput == gestorName) {
+
+        /* Usar setAttribute para alterar o estado do botão de delete */
+        if( confirmInput == ''){
+
+            delBtn.setAttribute("disabled", "true")
+
+        }if (confirmInput == gestorName) {
+
             delBtn.removeAttribute("disabled");
             delBtn.classList.toggle('bg-red-500');
             delBtn.classList.toggle('text-white');
             delBtn.classList.toggle('font-bold');
+
         } else {
             delBtn.setAttribute("disabled", "true");
         }
+        
     }
 </script>
 

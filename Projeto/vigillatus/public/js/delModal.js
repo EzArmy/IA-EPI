@@ -5,5 +5,8 @@ function showModal(){
 
 function closeModal(){
     var delModal = document.getElementById("delModal");
-    delModal.classList.toggle("show")
+
+    document.getElementById('confirmInput').value = '';
+    delModal.classList.toggle("show");
+    
 }
