@@ -4,53 +4,57 @@
     pageName: 'Editar Gestor'
 }) %>
 
-<div class="flex">
-<%- include('./partials/menu', {gestorInfo: gestorInfo}) %> 
+<div class="container grid grid-cols-5">
 
-    <div>
-        <%= error %>
+    
+    <%- include('./partials/menu', {gestorInfo: gestorInfo}) %> 
+
+    
+    <div class="p-2 rounded-lg col-start-2 col-span-4 sm:col-start-3">
+        
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Editar Perfil do Gestor</h1>
+        <div class="text-red-500 mb-4"><%= error %></div>
+        <form action="/home/perfilGestor/edit/gestorUpdate" method="post" enctype="multipart/form-data">
+
+            
+            <input required placeholder="Nome" type="text" name="gestorNome" value="<%= gestorInfo.nome %>"
+                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+
+            
+            <input required placeholder="Email" type="email" name="gestorEmail" value="<%= gestorInfo.email %>"
+                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+
+            
+            <input required placeholder="Senha" type="password" name="gestorSenha" value="<%= gestorInfo.senha %>"
+                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+
+            
+            <input placeholder="Foto de Perfil" type="file" name="gestorFoto"
+                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+
+            
+            <select required name="gestorSetor"
+                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+                <option selected disabled>Escolha um Setor</option>
+                <% listaSetores.forEach((listaSetores)=>{ %>
+                <option value="<%= listaSetores.id %>"><%= listaSetores.descricao %></option>
+                <% }); %>
+            </select>
+
+            
+            <select required name="gestorCargo"
+                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+                <option selected disabled>Escolha um Cargo</option>
+                <% listaCargos.forEach((listaCargos)=>{ %>
+                <option value="<%= listaCargos.id %>"><%= listaCargos.nome %></option>
+                <% }); %>
+            </select>
+
+            
+            <input type="submit" value="Atualizar"
+                class="w-full bgcolormain hover:bg-gray-500 text-white font-semibold rounded-md px-4 py-2 focus:outline-none">
+        </form>
     </div>
-
-    <form action="/home/perfilGestor/edit/gestorUpdate" method="post" enctype="multipart/form-data">
-        <input required placeholder="Gestor - Nome" type="text" name="gestorNome" value="<%= gestorInfo.nome %>">
-        <br>
-        <input required placeholder="Gestor - Email" type="email" name="gestorEmail" value="<%= gestorInfo.email %>">
-        <br>
-        <input required placeholder="Gestor - Senha" type="password" name="gestorSenha" value="<%= gestorInfo.senha %>">
-        <br>
-        <input placeholder="Gestor - Foto de perfil" type="file" name="gestorFoto">
-        <br>
-        <select required name="gestorSetor" id="">
-
-            <option selected disabled>
-                ESCOLHA UM SETOR
-            </option>
-
-            <% listaSetores.forEach((listaSetores)=>{ %>
-
-                <option value="<%= listaSetores.id %>">
-                    <%= listaSetores.descricao %>
-                </option>
-
-                <% }); %>
-        </select>   
-        <br>
-        <select required name="gestorCargo">
-
-            <option selected disabled>ESCOLHA UM CARGO</option>
-
-            <% listaCargos.forEach((listaCargos)=>{ %>
-
-                <option value="<%= listaCargos.id %>">
-                    <%= listaCargos.nome %>
-                </option>
-
-                <% }); %>
-
-        </select>
-        <br>
-        <input type="submit" value="Atualizar">
-    </form>
 
 </div>
 </body>

@@ -2,15 +2,17 @@
     gestorInfo: gestorInfo,
     pageName: 'HOME'
 }) %>
+<body class="">
+
+    <div class="container grid grid-cols-4">
     
-    <div id="loader"></div>
-
-    <div class="">  
-
-        <%- include('./partials/menu', {gestorInfo: gestorInfo}) %>               
-        
+        <div id="loader"></div>
+     
+        <div class="col-start-1 col-span-2 md:col-span-1">
+            <%- include('./partials/menu', {gestorInfo: gestorInfo}) %>             
+        </div>    
            
-    </div>    
+    </div>
 
 </body>
 
