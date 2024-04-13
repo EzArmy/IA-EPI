@@ -93,14 +93,16 @@
 
 
 
-                                <div class="flex flex-row">
-                                    <p>Digite corretamente seu nome para que possa finalmente deletar seu perfil ._.)</p>
-                                    <input id="confirmInput" placeholder="<%= gestorInfo.nome %>" type="text"
-                                        oninput="checkInput()">
+                                <div class="flex flex-col">
+                                    <p>Digite os números gerados abaixo:</p>
+                                    <p id="randomNum">
+                                        <!-- Gerando 6 números aleatórios -->
+                                    </p>
+                                    <input type="text" id="checkInput" oninput="numCheck()">
                                 </div>
 
                                 <div class="flex flex-row h-full items-center justify-around">
-                                    <button disabled id="delBtn" class="p-2 rounded  outline bg-[#e5ecf3]">
+                                    <button disabled onclick="clicked()" id="delBtn">
                                         Sim, quero deletar minhas informações 😠😡
                                     </button>
 
@@ -114,37 +116,4 @@
 
         </div>
 </body>
-<!-- Verificando se o conteúdo digitado no input é compatível com o nome do gestor -->
-<script>
-    function checkInput() {
-        /* Armazenando o nome digitado no input */
-        var confirmInput = document.getElementById("confirmInput").value;
-
-        /* Armazenando nome do gestor */
-        var gestorName = "<%= gestorInfo.nome %>";
-
-        /* Botão de deletar */
-        var delBtn = document.getElementById('delBtn');
-
-        /* Estilização para caso o nome seja escrito corretamente */
-
-        /* Usar setAttribute para alterar o estado do botão de delete */
-        if( confirmInput == ''){
-
-            delBtn.setAttribute("disabled", "true")
-
-        }if (confirmInput == gestorName) {
-
-            delBtn.removeAttribute("disabled");
-            delBtn.classList.toggle('bg-red-500');
-            delBtn.classList.toggle('text-white');
-            delBtn.classList.toggle('font-bold');
-
-        } else {
-            delBtn.setAttribute("disabled", "true");
-        }
-        
-    }
-</script>
-
 </html>
