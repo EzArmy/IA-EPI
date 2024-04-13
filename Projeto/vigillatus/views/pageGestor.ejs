@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="/style/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    
-=======
-    <!-- Tailwind css -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- delete modal -->
-    <script defer src="/js/delModal.js"></script>
-    <link rel="stylesheet" href="/style/delModal.css">
->>>>>>> e601b82f5f9ea729694e8a7ed0c65301b5a6b5d9
-    <title>GESTOR</title>
-</head>
+<%- include('./partials/header', {
+    pageName:'GESTOR'
+}) %>   
 
 <body class="">
 
@@ -29,7 +9,7 @@
     <div class="flex">
 
     <%- include('./partials/menu') %>
-    <%- include('./partials/header') %>
+   
     
         <!-- page COntainer -->
         <div class="">
@@ -62,14 +42,11 @@
                         </a>
                         <!-- Rota para deletar -->
                         <form action="/home/perfilGestor/edit/delete" method="post">
-<<<<<<< HEAD
                             <button>Delete</button>
                         </form>
         </div>
     </div>
     
-=======
->>>>>>> e601b82f5f9ea729694e8a7ed0c65301b5a6b5d9
 
                         </form>
 
