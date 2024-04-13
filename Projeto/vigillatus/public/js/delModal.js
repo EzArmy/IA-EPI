@@ -16,13 +16,13 @@ function randomNums() {
 function showModal() {
     var delModal = document.getElementById("delModal");
     delModal.classList.toggle("show");
-
+    document.getElementById('delBtn').disabled = true;
     randomNums()
 }
 
 function closeModal() {
     var delModal = document.getElementById("delModal");
-    document.getElementById('confirmInput').value = '';
+    document.getElementById('checkInput').value = '';
     delModal.classList.toggle("show");
 
 }
@@ -34,16 +34,9 @@ function numCheck() {
     /* capturando os números digitados pelo gestor no input */
     var checkInput = document.getElementById('checkInput').value;
 
-    /* Botão de delete */
-    var delBtn = document.getElementById('delBtn');
-
-    if(checkInput == randomNum){
-        delBtn.setAttribute('disabled', 'false');
-        delBtn.style.backgroundColor = 'green';
-        console.log('São enguais *-*)');
-    }else{
-        delBtn.setAttribute('disabled', 'true');
-        delBtn.style.backgroundColor = 'red'
-        console.log('Não são enguais ._.)');
+    if (checkInput == '' || checkInput != randomNum) {
+        document.getElementById('delBtn').disabled = true;
+    } else if (checkInput == randomNum) {
+        document.getElementById('delBtn').disabled = false;
     }
 }

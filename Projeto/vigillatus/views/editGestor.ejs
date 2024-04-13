@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar perfil</title>
-</head>
+<%- include('./partials/header', {
+    gestorInfo: gestorInfo,
+    pageName: 'Editar Gestor'
+}) %>
 
-<body>
-    <h1>EDITAR PERFIL DE GESTOR</h1>
+<div class="flex">
+<%- include('./partials/menu', {gestorInfo: gestorInfo}) %> 
 
     <div>
         <%= error %>
@@ -55,8 +52,7 @@
         <input type="submit" value="Atualizar">
     </form>
 
-    <br><br>
-    <a href="/">login</a>
+</div>
 </body>
 
 </html>

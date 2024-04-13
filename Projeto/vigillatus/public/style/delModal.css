@@ -12,9 +12,11 @@
 }
 
 #delBtn{
-    background-color: blue;
+    background-color: red;
+    color: white;
 }
 
 #delBtn:disabled {
-    background-color: red;
+    background-color: gray;
+    color: black;
 }
