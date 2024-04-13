@@ -69,7 +69,8 @@ router.get('/perfilGestor', async (req, res) => {
         gestorInfo,
         imagePath,
         gestorCargo,
-        gestorSetor
+        gestorSetor,
+        morrer: null
     });
 });
 

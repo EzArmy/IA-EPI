@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2024 at 04:02 AM
+-- Generation Time: Apr 11, 2024 at 05:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,8 +68,8 @@ CREATE TABLE `colaboradores` (
 --
 
 INSERT INTO `colaboradores` (`id`, `nome`, `email`, `foto`, `idSetor`, `idCargo`, `idGestor`, `createdAt`, `updatedAt`) VALUES
-(1, 'Colab 1', 'colab1@teste', 'visualsofdana-exEfgnSaX6A-unsplash.jpg', 1, 4, 6, '2024-04-03 02:00:39', '2024-04-03 02:00:39'),
-(2, 'Colab 2', 'colab2@teste', 'visualsofdana-exEfgnSaX6A-unsplash.jpg', 1, 4, 6, '2024-04-03 02:01:01', '2024-04-03 02:01:01');
+(1, 'Colab 1 teste', 'colab1@teste', 'neom-TA5hw14Coh4-unsplash.jpg', 1, 4, 2, '2024-04-05 05:59:24', '2024-04-07 06:56:29'),
+(2, 'Colab 2', 'colab2@teste', 'neom-TA5hw14Coh4-unsplash.jpg', 1, 4, 2, '2024-04-05 06:00:08', '2024-04-05 06:00:08');
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,9 @@ CREATE TABLE `gestores` (
 --
 
 INSERT INTO `gestores` (`id`, `nome`, `email`, `senha`, `foto`, `idSetor`, `idCargo`, `createdAt`, `updatedAt`) VALUES
-(6, 'Isac505', 'isac@teste', 'Isac@1234', 'laura-college-K_Na5gCmh38-unsplash.jpg', 1, 2, '2024-04-03 01:36:11', '2024-04-03 02:01:35');
+(1, 'João Almeida da Silva', 'jalmeida@teste', 'Jalmeida@123', 'neom-TA5hw14Coh4-unsplash.jpg', 1, 2, '2024-04-05 04:51:16', '2024-04-05 04:52:57'),
+(2, 'Jefferson Wilson da Silva', 'jwilson@teste', 'Jwilson@123', NULL, 1, 2, '2024-04-05 05:07:13', '2024-04-05 05:37:50'),
+(3, 'Pedro da Silva', 'psilva@teste', 'Psilva@123', 'neom-TA5hw14Coh4-unsplash.jpg', 1, 2, '2024-04-05 05:55:04', '2024-04-05 05:57:50');
 
 -- --------------------------------------------------------
 
@@ -165,13 +167,13 @@ ALTER TABLE `cargos`
 -- AUTO_INCREMENT for table `colaboradores`
 --
 ALTER TABLE `colaboradores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `gestores`
 --
 ALTER TABLE `gestores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setores`
@@ -189,14 +191,14 @@ ALTER TABLE `setores`
 ALTER TABLE `colaboradores`
   ADD CONSTRAINT `colaboradores_ibfk_1` FOREIGN KEY (`idSetor`) REFERENCES `setores` (`id`),
   ADD CONSTRAINT `colaboradores_ibfk_2` FOREIGN KEY (`idCargo`) REFERENCES `cargos` (`id`),
-  ADD CONSTRAINT `colaboradores_ibfk_3` FOREIGN KEY (`idGestor`) REFERENCES `gestores` (`id`);
+  ADD CONSTRAINT `colaboradores_ibfk_3` FOREIGN KEY (`idGestor`) REFERENCES `gestores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `gestores`
 --
 ALTER TABLE `gestores`
-  ADD CONSTRAINT `gestores_ibfk_1` FOREIGN KEY (`idSetor`) REFERENCES `setores` (`id`),
-  ADD CONSTRAINT `gestores_ibfk_2` FOREIGN KEY (`idCargo`) REFERENCES `cargos` (`id`);
+  ADD CONSTRAINT `gestores_ibfk_1` FOREIGN KEY (`idSetor`) REFERENCES `setores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `gestores_ibfk_2` FOREIGN KEY (`idCargo`) REFERENCES `cargos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
