@@ -1,34 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search page, oloco se loko</title>
-</head>
-<body>
+<%- include('./partials/header', {
+    gestorInfo: gestorInfo,
+    pageName: 'Pesquisa'
+}) %> 
 
-    <% foundColab.forEach((colab)=>{ %>
-        <div class="bg-red-500 my-2">
-            <div style="display: flex; flex-direction: row; align-items: center;">
-                <% if(colab.foto==null){ %>
-                    <img class="rounded-full" src="/img/profile/default.jpg"
-                        style="width: 100px; height: 100px;" alt="">
-                    <% } else { %>
-                        <img class="rounded-full"
-                            src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= colab.id %>/<%= colab.foto %>"
-                            alt="" style="width: 100px; height: 100px;">
-                        <% } %>
+<div id="loader"></div>
 
-                            <p>
-                                <%= colab.nome %>
-                            </p>
-                            <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
-                            <a href="/home/colaboradores/<%= colab.id %>/">
-                                ver info
-                            </a>
-            </div>
+<div class="flex container grid grid-cols-5"> 
+
+    <div class="col-start-1 col-span-1">
+        <%- include('./partials/menu') %>
+    </div>     
+
+<div class="rounded-lg col-start-2 col-span-4 sm:col-start-3 sm:col-end-5 p-2">
+
+    <h1 class="text-2xl font-bold text-gray-800 my-6">Pesquisa</h1>
+
+<% foundColab.forEach((colab)=>{ %>
+    <div class="bg-gray-200 my-2 mt-4 flex justify-between">
+        <div class="flex justify-center items-center">
+            <% if(colab.foto==null){ %>
+                <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
+            <% } else { %>
+                <img class="rounded-full" src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= colab.id %>/<%= colab.foto %>" alt="" style="width: 100px; height: 100px;">
+            <% } %>
+            <p><%= colab.nome %></p>
         </div>
-    <% }); %>
+        <div class="font-semibold my-auto sm:mx-4 text-gray-800">
+            <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
+            <a href="/home/colaboradores/<%= colab.id %>/" class="">ver info</a>
+        </div>
+    </div>
+<% }); %>
+
+</div>
+</div>
 
 </body>
 </html>
