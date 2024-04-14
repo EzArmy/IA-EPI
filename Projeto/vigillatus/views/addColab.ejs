@@ -1,10 +1,17 @@
 <%- include('./partials/header', { gestorInfo: gestorInfo, pageName: 'Adicionar colaborador' }) %>
 
-    <body>
-        <div class="flex">
-            <div id="loader"></div>
+    <body >
 
+        <div class="flex container grid grid-cols-5">   
+            
+        <div class="col-start-1 col-span-1">
             <%- include('./partials/menu') %>
+        </div>
+        
+
+        <div class="col-start-2 col-span-4 sm:col-start-3 sm:col-span-2">
+            
+            <div id="loader"></div>            
 
                 <!-- Exibir mensagem de erro se existir -->
                 <% if (error) { %>
@@ -55,6 +62,7 @@
                             <br>
                             <input type="submit" value="Cadastrar colaborador">
                         </form>
+        </div>
         </div>
 
     </body>

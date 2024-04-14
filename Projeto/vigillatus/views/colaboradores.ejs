@@ -2,23 +2,30 @@
     gestorInfo: gestorInfo,
     pageName: 'Lista de colaboradores'
 }) %>
-<body class="container grid grid-cols-4">
+<body class="">
 
     <div id="loader"></div>
 
-    <%- include('./partials/menu') %>
+    <div class="container grid grid-cols-5">
+    
 
-        <div class="col-start-2 col-span-3">
+    <div class="col-start-1 col-span-1">
+        <%- include('./partials/menu') %>
+    </div>
 
-            <h1>Colaboradores</h1>
+        <div class="">
 
-            <a href="/home/addColab">adicionar colaboradores</a>
+            <h1 class="text-2xl font-bold text-gray-800 mb-4 my-8">Colaboradores</h1>
+            
 
-            <div class="grid grid-cols-2 gap-x-2 gap-y-2">
+            <a href="/home/addColab" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300">Adicionar colaborador</a>
+            
+
+            <div class="col-start-3 col-span-5">
 
                 <% listColaborador.forEach((listColaborador)=>{ %>
                     
-                    <div class="bg-red-500 my-2">
+                    <div class="bg-gray-300 my-2">
                         <div style="display: flex; flex-direction: row; align-items: center;">
                             <% if(listColaborador.foto == null){ %>
                             <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
@@ -42,6 +49,7 @@
             </div>
 
         </div>
+    </div>
 </body>
 
 </html>

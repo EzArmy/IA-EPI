@@ -12,10 +12,12 @@
         </div>
         
 
-        <div class="col-start-2 col-span-4 sm:col-start-3">          
+        <div class="col-start-2 col-span-4 sm:col-start-3 text-gray-800">          
 
                 <!-- page COntainer -->
                 <div class="mt-4 ml-2">
+
+                    <h1 class="text-2xl font-bold my-8">Perfil do Gestor</h1>
 
                     <% if(gestorInfo.foto==null) { %>
                         <img class="rounded-full" style="width: 150px; height: 150px;" src="/img/profile/default.jpg" alt="">
@@ -24,20 +26,20 @@
                                 src="/uploads/<%= gestorInfo.id %>/<%= gestorInfo.foto %>" alt="">
                             <% } %>
 
-                            <h1 class="text-3xl font-medium mb-2"><%= gestorInfo.nome %></h1>
+                            <h1 class="text-3xl font-medium mb-2 my-8"><%= gestorInfo.nome %></h1>
                             <h3 class="text-lg mb-1"><%= gestorInfo.email %></h3>
                             <h3 class="text-lg mb-1"><%= gestorInfo.senha %></h3>
                             <h3 class="text-lg mb-1"><%= gestorCargo.nome %></h3>
                             <h3 class="text-lg mb-4"><%= gestorSetor.descricao %></h3>
 
-                    <div class="">
+                    <div class="my-8">
                         <a href="/home/perfilGestor/edit">
-                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300 my-2">
+                            <button class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300">
                                 Editar perfil
                             </button>
                         </a>
 
-                        <button class="bg-red-500 hover:bg-red-300 text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300" onclick="showModal()">DELETE</button>
+                        <button class="bg-red-500 hover:bg-red-400 text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300" onclick="showModal()">DELETE</button>
 
                         <div id="delModal" class="w-3/5 h-1/2 rounded-lg border-4 border-gray-800">
 
