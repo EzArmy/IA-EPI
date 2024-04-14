@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
+const { Op } = require('sequelize');
 
 //module import
 const Colaborador = require('../module/Colaborador');
@@ -119,6 +120,50 @@ router.get('/colaboradores', async (req, res) => {
     });
 });
 
+/* Rota de pesquisa */
+router.post('/colaboradores/search/', async (req, res) => {
+    /* Trazendo dados do colaborador */
+    const gestorInfo = req.session.user;
+
+    /* Capturando valor no input de pesquisa */
+    const { searchColab } = req.body; // Usar req.query para parâmetros de consulta na URL
+
+    // Listando colaboradores vinculados ao gestor
+    const listColaborador = await Colaborador.findAll({
+        where: { idGestor: [gestorInfo.id] }
+    });
+
+    // Verificar se o nome do colaborador está na lista
+    const foundColab = await Colaborador.findAll({
+        where: {
+            nome: {
+                [Op.like]: `${searchColab}%`
+            }
+        }
+    });
+
+    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+
+    // Se imagePath for null ou vazio, define a imagem padrão
+    imagePath = imagePath || '/img/profile/default.jpg';
+
+    if (foundColab) {
+        console.log(`Você pesquisou ${searchColab}`);
+        console.log(`Achei o colaborador ${foundColab.nome}`);
+        res.render('search.ejs', {
+            gestorInfo,
+            imagePath,
+            listColaborador,
+            gestorInfo,
+            foundColab
+        });
+    } else {
+        console.log(`Você pesquisou ${searchColab}`);
+        console.log('Colaborador não encontrado');
+        res.send('Colaborador não encontrado'); // Enviar resposta ao cliente
+    }
+});
+
 //Rota para a página de detalhes de um colaborador
 router.get(`/colaboradores/:id/`, async (req, res) => {
 
@@ -227,11 +272,6 @@ router.post('/colaboradores/:id/editColab/colabUpdate', uploadColabFoto.single('
         colabFoto = findColab.foto; // Use a foto atual do colaborador
     }
 
-    /*  // Verificar se todos os campos obrigatórios estão preenchidos
-    if (!colabNome || !colabEmail || !colabSetor || !colabCargo) {
-        return res.render('addColab.ejs', { error: 'Todos os campos são obrigatórios', listaSetores, listaCargos, imagePath, gestorInfo });
-    } */
-
     try {
         await Colaborador.update({
             nome: colabNome,
@@ -259,26 +299,26 @@ router.post('/colaboradores/:id/editColab/colabUpdate', uploadColabFoto.single('
     }
 });
 
-router.post("/colaboradores/:id/colabDelete", async (req, res)=>{
+router.post("/colaboradores/:id/colabDelete", async (req, res) => {
     const gestorInfo = req.session.user;
     const colabId = req.params.id;
 
-    try{
+    try {
         await Colaborador.destroy({
-            where:{
-                id:colabId
+            where: {
+                id: colabId
             }
         });
 
         /* Excluindo pasta do colaborador */
-        const pastaColab = `./public/uploads/${gestorInfo.id}/colaboradores/${colabId }`;
+        const pastaColab = `./public/uploads/${gestorInfo.id}/colaboradores/${colabId}`;
         if (fs.existsSync(pastaColab)) {
             fs.rmdirSync(pastaColab, { recursive: true });
         }
 
         /* Redirecionando para a página de colaboradores */
         res.redirect('/home/colaboradores');
-    }catch(error){
+    } catch (error) {
         console.error('Erro ao deletar colaborador:', error);
         res.redirect('/home/colaboradores');
     }

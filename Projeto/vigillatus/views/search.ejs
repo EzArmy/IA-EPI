@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search page, oloco se loko</title>
+</head>
+<body>
+
+    <% foundColab.forEach((colab)=>{ %>
+        <div class="bg-red-500 my-2">
+            <div style="display: flex; flex-direction: row; align-items: center;">
+                <% if(colab.foto==null){ %>
+                    <img class="rounded-full" src="/img/profile/default.jpg"
+                        style="width: 100px; height: 100px;" alt="">
+                    <% } else { %>
+                        <img class="rounded-full"
+                            src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= colab.id %>/<%= colab.foto %>"
+                            alt="" style="width: 100px; height: 100px;">
+                        <% } %>
+
+                            <p>
+                                <%= colab.nome %>
+                            </p>
+                            <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
+                            <a href="/home/colaboradores/<%= colab.id %>/">
+                                ver info
+                            </a>
+            </div>
+        </div>
+    <% }); %>
+
+</body>
+</html>

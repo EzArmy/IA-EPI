@@ -4,7 +4,8 @@
 }) %>
 <body class="flex">
 
-    <div id="loader"></div>
+    <div class="flex">
+        <div id="loader"></div>
 
     <div class="flex container grid grid-cols-5">    
 
@@ -25,36 +26,54 @@
 
             <div class="flex-col my-8">
 
-                <% listColaborador.forEach((listColaborador)=>{ %>
-                    
-                    
-                        <div class="bg-gray-300 my-2 flex">
-                            <% if(listColaborador.foto == null){ %>
-                            <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
-                            <% } else { %>
-                                <img class="rounded-full"
-                                src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>"
-                                alt="" style="width: 100px; height: 100px;" class="ml-2">
-                            <% } %>                            
-                            <p class="mt-8 ml-4">
-                                <%= listColaborador.nome %>
-                            </p>                            
+                <!-- Barra de pesquisa para colaboradores -->
+                <form action="/home/colaboradores/search" method="post">
+                    <input placeholder="Buscar colaborador" type="text" name="searchColab" id="">
+                    <button type="submit">PESQUISAR</button>
+                </form>
+
+                <!-- apresentando pesquisa -->
+
+                <a href="/home/addColab">adicionar colaboradores</a>
+
+                <div class="">
+
+                    <% listColaborador.forEach((listColaborador)=>{ %>
+
+                        <div class="bg-red-500 my-2">
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <% if(listColaborador.foto==null){ %>
+                                    <img class="rounded-full" src="/img/profile/default.jpg"
+                                        style="width: 100px; height: 100px;" alt="">
+                                    <% } else { %>
+                                        <img class="rounded-full"
+                                            src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>"
+                                            alt="" style="width: 100px; height: 100px;">
+                                        <% } %>
+
+                                            <p>
+                                                <%= listColaborador.nome %>
+                                            </p>
+                                            <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
+                                            <a href="/home/colaboradores/<%= listColaborador.id %>/">
+                                                ver info
+                                            </a>
+                            </div>
                         </div>
 
-                        <div class="text-right mr-2">
-                            <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
-                            <a href="/home/colaboradores/<%= listColaborador.id %>/">
-                                ver info
-                            </a>
-                        </div>             
-                        
-                    
+                        <% }); %>
+                </div>
 
-                    <% }); %>
             </div>
+    </div>
+    </body>
 
+<<<<<<< Updated upstream
         </div>
     </div>
 </body>
 
 </html>
+=======
+    </html>
+>>>>>>> Stashed changes

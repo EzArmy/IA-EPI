@@ -1,48 +1,88 @@
-<%- include('./partials/header', {
-    gestorInfo: gestorInfo,
-    pageName: 'Colaborador'
-}) %>
+<%- include('./partials/header', { gestorInfo: gestorInfo, pageName: 'Colaborador' }) %>
+
 <body>
+    <div class="flex">
 
-    <div id="loader"></div>
+        <div id="loader"></div>
 
-    <div id="loader"></div>
+        <%- include('./partials/menu') %>
 
-    <h1>Página do colaborador</h1>
+            <div class="flex flex-col">
+                <%listColabInfo.forEach((listColabInfo)=>{ %>
+                    <h3>
+                        <%= listColabInfo.nome %>
+                    </h3>
+                <% }); %>
 
-    <%- include('./partials/menu') %>
+                <%listColabInfo.forEach((listColabInfo)=>{ %>
 
-    <%listColabInfo.forEach((listColabInfo)=>{ %>
-        <h3><%= listColabInfo.nome %></h3>
-    <% }); %>
+                    <% if(listColabInfo.foto==null){ %>
+                        <img style="width: 100px; height: 100px;" src="/img/profile/default.jpg"
+                            alt="imagem de <%= listColabInfo.nome %>">
 
-    <%listColabInfo.forEach((listColabInfo)=>{ %>
+                    <% } else { %>
 
-        <% if(listColabInfo.foto == null){ %>
-            <img style="width: 100px; height: 100px;" src="/img/profile/default.jpg" alt="imagem de <%= listColabInfo.nome %>">
-        <% } else { %>
+                        <img style="width: 100px; height: 100px;" src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColabInfo.id %>/<%= listColabInfo.foto %>" alt="Perfil <%= listColabInfo.nome %>">
 
-        <img style="width: 100px; height: 100px;" src="/uploads/<%= gestorInfo.nome %>/colaboradores/<%= listColabInfo.nome %>/<%= listColabInfo.foto %>" alt="imagem de <%= listColabInfo.nome %>">
-    
-        <% } %>
+                    <% } %>
 
-    <% }); %>
+                <% }); %>
 
-    <% listColabInfo.forEach((listColabInfo)=>{ %>
-        <h4><%= listColabInfo.nome %></h4>
-    <% }); %>
-    
-    <% listColabInfo.forEach((listColabInfo)=>{ %>
-        <a href="editColab">
-            Editar perfil de colaborador
-        </a>
-    <% }); %>   
+        <% listColabInfo.forEach((listColabInfo)=>{ %>
+            <h4>
+                <%= listColabInfo.nome %>
+            </h4>
+        <% }); %>
 
-    <form action="colabDelete" method="post">
-        <button type="submit">
+        <% listColabInfo.forEach((listColabInfo)=>{ %>
+            <a href="editColab">
+                Editar perfil de colaborador
+            </a>
+        <% }); %>
+
+        <button onclick="showModal()">
             Deletar colaborador
         </button>
-    </form>
+    </div>
+    </div>
 
+    <div id="delModal" class="w-3/5 h-1/2 rounded-lg border-4 border-gray-800">
+
+        <div class="flex flex-col w-full bg-gray-300 rounded">
+
+            <div class="flex flex-row justify-end px-5 py-2">
+                <button onclick="closeModal()">
+                    <img class="h-8 w-8" src="/img/icons/x-lg.svg" alt="close icon">
+                </button>
+            </div>
+
+            <div class="flex flex-col h-full justify-center items-center">
+                <h1 class="text-4xl font-bold my-2">DELETAR COLABORADOR? 😭</h1>
+                <p class="text-xl ">Vai deletar este pobre proletariado</p>
+            </div>
+
+            <div class="flex flex-col">
+                <p>Digite os números gerados abaixo:</p>
+                <p id="randomNum">
+                    <!-- Gerando 6 números aleatórios -->
+                </p>
+                <input placeholder="Digite os número acima para poder prosseguir" type="text" id="checkInput" oninput="numCheck()">
+            </div>
+
+            <div class="flex flex-row h-full items-center justify-around">
+                <form action="colabDelete" method="post">
+                    <button disabled='true' id="delBtn">
+                        Sim, vou deletar este pobre trabalhador 😈
+                    </button>
+                </form>
+
+                <button onclick="closeModal()">
+                    Não, não vou deletar este pobre trabalhador 😇
+                </button>
+            </div>
+        </div>
+
+    </div>
 </body>
+
 </html>

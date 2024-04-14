@@ -7,7 +7,7 @@ function randomNums() {
     var num = [];
 
     for (var i = 0; i < 6; i++) {
-        num.push(randomGen(1, 9));
+        num.push(randomGen(0, 9));
     }
 
     randomNum.innerHTML = num.join('');
