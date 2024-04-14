@@ -2,48 +2,53 @@
     gestorInfo: gestorInfo,
     pageName: 'Lista de colaboradores'
 }) %>
-<body class="">
+<body class="flex">
 
     <div id="loader"></div>
 
-    <div class="container grid grid-cols-5">
+    <div class="flex container grid grid-cols-5">    
+
+        <div class="col-start-1 col-end-1">
+            <%- include('./partials/menu') %>
+        </div>
+        
     
 
-    <div class="col-start-1 col-span-1">
-        <%- include('./partials/menu') %>
-    </div>
+        <div class="col-start-2 col-span-4 sm:col-start-3 sm:col-end-5">
 
-        <div class="">
-
-            <h1 class="text-2xl font-bold text-gray-800 mb-4 my-8">Colaboradores</h1>
+            
+            <h1 class="text-2xl font-bold text-gray-800 mb-4 my-8 text-center">Colaboradores</h1>
             
 
-            <a href="/home/addColab" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300">Adicionar colaborador</a>
+            <a href="/home/addColab" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2 self-end focus:outline-none transition-colors duration-300">Adicionar colaborador</a>
             
 
-            <div class="col-start-3 col-span-5">
+            <div class="flex-col my-8">
 
                 <% listColaborador.forEach((listColaborador)=>{ %>
                     
-                    <div class="bg-gray-300 my-2">
-                        <div style="display: flex; flex-direction: row; align-items: center;">
+                    
+                        <div class="bg-gray-300 my-2 flex">
                             <% if(listColaborador.foto == null){ %>
                             <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
                             <% } else { %>
                                 <img class="rounded-full"
                                 src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>"
-                                alt="" style="width: 100px; height: 100px;">
-                            <% } %>
-                            
-                            <p>
+                                alt="" style="width: 100px; height: 100px;" class="ml-2">
+                            <% } %>                            
+                            <p class="mt-8 ml-4">
                                 <%= listColaborador.nome %>
-                            </p>
+                            </p>                            
+                        </div>
+
+                        <div class="text-right mr-2">
                             <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
                             <a href="/home/colaboradores/<%= listColaborador.id %>/">
                                 ver info
                             </a>
-                        </div>
-                    </div>
+                        </div>             
+                        
+                    
 
                     <% }); %>
             </div>
