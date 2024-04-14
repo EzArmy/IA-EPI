@@ -1,69 +1,49 @@
 <%- include('./partials/header', { gestorInfo: gestorInfo, pageName: 'Adicionar colaborador' }) %>
 
-    <body >
+<div id="loader"></div>
 
-        <div class="flex container grid grid-cols-5">   
+<div class="flex container grid grid-cols-5">
+
+    <div class="col-start-1 col-span-1">
+        <%- include('./partials/menu') %>
+    </div>
+
+    <div class="p-2 rounded-lg col-start-2 col-span-4 sm:col-start-3 sm:col-span-2">        
+
+        <h1 class="text-2xl font-bold text-gray-800 mb-4 my-6">Adicionar Colaborador</h1>
+
+        <!-- Exibir mensagem de erro se existir -->
+        <% if (error) { %>
+        <div class="card bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+            <p><%= error %></p>
+        </div>
+        <% } %>
+
+        <form action="/home/addColab/cadColab" method="post" enctype="multipart/form-data" class="mb-8">
+            <input placeholder="Nome" type="text" name="colabNome" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
             
-        <div class="col-start-1 col-span-1">
-            <%- include('./partials/menu') %>
-        </div>
-        
-
-        <div class="col-start-2 col-span-4 sm:col-start-3 sm:col-span-2">
+            <input placeholder="Email" type="email" name="colabEmail" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
             
-            <div id="loader"></div>            
-
-                <!-- Exibir mensagem de erro se existir -->
-                <% if (error) { %>
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">
-                                <%= error %>
-                            </p>
-                        </div>
-                    </div>
-                    <% } %>
-
-                        <form action="/home/addColab/cadColab" method="post" enctype="multipart/form-data">
-                            <input placeholder="Colaborador - Nome" type="text" name="colabNome" id="">
-                            <br>
-                            <input placeholder="Colaborador - Email" type="email" name="colabEmail" id="">
-                            <br>
-                            <select name="colabSetor" id="">
-                                <option disabled selected>
-                                    Escolha um setor
-                                </option>
-
-                                <% listaSetores.forEach((listaSetores)=>{ %>
-
-                                    <option value="<%= listaSetores.id %>">
-                                        <%= listaSetores.descricao %>
-                                    </option>
-
-                                    <% }); %>
-
-                            </select>
-                            <br>
-                            <select name="colabCargo" id="">
-                                <option disabled selected>
-                                    Escolha um cargo
-                                </option>
-
-                                <% listaCargos.forEach((listaCargos)=>{ %>
-
-                                    <option value="<%= listaCargos.id %>">
-                                        <%= listaCargos.nome %>
-                                    </option>
-
-                                    <% }); %>
-                            </select>
-                            <br>
-                            <input type="file" name="colabFoto" id="">
-                            <br>
-                            <input type="submit" value="Cadastrar colaborador">
-                        </form>
-        </div>
-        </div>
+            <select name="colabSetor" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+                <option disabled selected>Escolha um setor</option>
+                <% listaSetores.forEach((listaSetores)=>{ %>
+                <option value="<%= listaSetores.id %>"><%= listaSetores.descricao %></option>
+                <% }); %>
+            </select>
+            
+            <select name="colabCargo" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+                <option disabled selected>Escolha um cargo</option>
+                <% listaCargos.forEach((listaCargos)=>{ %>
+                <option value="<%= listaCargos.id %>"><%= listaCargos.nome %></option>
+                <% }); %>
+            </select>
+            
+            <input type="file" name="colabFoto" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+            
+            <input type="submit" value="Cadastrar Colaborador" class="w-full bgcolormain hover text-white font-semibold rounded-md px-4 py-2 focus:outline-none">
+        </form>
+    </div>
+</div>
 
     </body>
 

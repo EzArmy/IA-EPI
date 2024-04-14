@@ -1,23 +1,21 @@
 <%- include('./partials/header', {
     gestorInfo: gestorInfo,
     pageName: 'Lista de colaboradores'
-}) %>
-<body class="flex">
+}) %>  
+    
+    <div id="loader"></div>
 
-    <div class="flex">
-        <div id="loader"></div>
+    <div class="flex container grid grid-cols-5">        
 
-    <div class="flex container grid grid-cols-5">    
-
-        <div class="col-start-1 col-end-1">
+        <div class="col-start-1 col-span-1">
             <%- include('./partials/menu') %>
         </div>        
     
 
-        <div class="col-start-2 col-span-4 sm:col-start-3 sm:col-end-5">
+        <div class="rounded-lg col-start-2 col-span-4 sm:col-start-3 sm:col-end-5 p-2">
 
             
-            <h1 class="text-2xl font-bold text-gray-800 my-6 text-center">Colaboradores</h1>           
+            <h1 class="text-2xl font-bold text-gray-800 my-6">Colaboradores</h1>           
             
 
             <div class="flex-col">
@@ -39,8 +37,8 @@
 
                     <% listColaborador.forEach((listColaborador)=>{ %>
 
-                        <div class="bg-gray-200 my-2 mt-4">
-                            <div style="display: flex; flex-direction: row; align-items: center;">
+                        <div class="bg-gray-200 my-2 mt-4 flex justify-between ">
+                            <div class="flex justify-center items-center">
                                 <% if(listColaborador.foto==null){ %>
                                     <img class="rounded-full" src="/img/profile/default.jpg"
                                         style="width: 100px; height: 100px;" alt="">
@@ -52,13 +50,16 @@
 
                                             <p>
                                                 <%= listColaborador.nome %>
-                                            </p>
-                                            <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
-                                            <a href="/home/colaboradores/<%= listColaborador.id %>/">
-                                                ver info
-                                            </a>
-                            </div>
+                                            </p>                                            
+                            </div>    
+                            <div class="font-semibold my-auto sd:mx-4">
+                                <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
+                                <a href="/home/colaboradores/<%= listColaborador.id %>/">
+                                    ver info
+                                </a>
+                            </div>                        
                         </div>
+                        
                         <% }); %>
                 </div>
             </div>
