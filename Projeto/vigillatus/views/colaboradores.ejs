@@ -23,7 +23,7 @@
                 <!-- Barra de pesquisa para colaboradores -->
                 <form action="/home/colaboradores/search" method="post">
 
-                    <input placeholder="Buscar colaborador" type="text" name="searchColab" id="" class="bg-white border border-gray-300 rounded-md py-2 mb-4 focus:outline-none w-full">
+                    <input placeholder="Buscar colaborador" type="text" name="searchColab" id="" class="bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none w-full">
 
                     <button type="submit" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2">PESQUISAR</button>   
                     
@@ -37,26 +37,20 @@
 
                     <% listColaborador.forEach((listColaborador)=>{ %>
 
-                        <div class="bg-gray-200 my-2 mt-4 flex justify-between ">
+                        <div class="bg-white bg-opacity-50 my-2 mt-4 flex justify-between rounded-lg shadow-lg">
                             <div class="flex justify-center items-center">
                                 <% if(listColaborador.foto==null){ %>
-                                    <img class="rounded-full" src="/img/profile/default.jpg"
-                                        style="width: 100px; height: 100px;" alt="">
-                                    <% } else { %>
-                                        <img class="rounded-full"
-                                            src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>"
-                                            alt="" style="width: 100px; height: 100px;">
-                                        <% } %>
-
-                                            <p>
-                                                <%= listColaborador.nome %>
-                                            </p>                                            
+                                    <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
+                                <% } else { %>
+                                    <img class="rounded-full" src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>" alt="" style="width: 100px; height: 100px;">
+                                <% } %>
+                                <p class="ml-4 text-gray-900 font-semibold">
+                                    <%= listColaborador.nome %>
+                                </p>                                            
                             </div>    
-                            <div class="font-semibold my-auto sm:mx-4 text-gray-800">
-                                <!-- Criando rota dinÂmica para a página de detalhes do colaborador -->
-                                <a href="/home/colaboradores/<%= listColaborador.id %>/">
-                                    ver info
-                                </a>
+                            <div class="my-auto sm:mx-4 text-gray-800">
+                                <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
+                                <a href="/home/colaboradores/<%= listColaborador.id %>/" class="text-blue-500 hover:underline">ver info</a>
                             </div>                        
                         </div>
                         
