@@ -1,7 +1,7 @@
-<aside class="col-start-1 flex flex-col justify-between h-screen ">
+<aside class="col-start-1 flex flex-col justify-between h-screen">
     
 
-    <ul class="flex flex-col justify-around bgcolormain w-22 sm:w-64 w-full h-full">
+    <ul class="flex flex-col justify-around bgcolormain sm:w-64 h-full fixed">
 
         <div class="mx-auto sm:w-32 w-16">
             <img src="/img/logoCapaCT.png" alt="Logo" class="">
@@ -11,7 +11,7 @@
             <a href="/home">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-house-door-fill text-white" viewBox="0 0 16 16"><path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
             </svg>            
-            <li class="mx-4 mt-3 sm:font-medium text-white hidden sm:block">                             
+            <li class="mx-4 mt-3 sm:font-medium text-white hidden sm:block">          
                     Home
                 </a>
             </li>          
@@ -75,18 +75,16 @@
         </div>
 
         
-            <div class="mx-4 sm:mx-10 text-white font-medium">
-
-                <a href="/home/perfilGestor" class="sm:flex ">
-                    <img src="<%= imagePath %>" style='width: 50px; height: 50px; border-radius: 100%;' alt="<%= gestorInfo.name %>">
-                    <p class="mt-2 sm:mt-0 sm:ml-2 text-center sm:text-left">
-                        <%= gestorInfo.nome %>
-                    </p>
-                </a>
-                
-            </div>
+        <div class="flex mx-auto sm:mx-10 items-center justify-center sm:justify-start">
+            <a href="/home/perfilGestor" class="sm:flex ">
+                <img src="<%= imagePath %>" style='width: 50px; height: 50px; border-radius: 100%;' alt="<%= gestorInfo.name %>">
+                <p class="mt-2 sm:mx-4 text-center text-white font-medium">
+                    <%= gestorInfo.nome %>
+                </p>
+            </a>
+        </div>
                     
-            <a href="/logout" class="mx-auto sm:mx-10 text-white font-bold mb-2 ">Sair</a>           
+            <a href="/logout" class="mx-auto sm:mx-10 text-white font-bold ">Sair</a>           
                 
         
     </ul>    
