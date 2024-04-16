@@ -5,40 +5,41 @@
     
     <div id="loader"></div>
 
-    <div class="flex container grid grid-cols-5">        
+    <div class="container grid grid-cols-5">     
 
         <div class="col-start-1 col-span-1">
             <%- include('./partials/menu') %>
         </div>        
     
 
-        <div class="rounded-lg col-start-2 col-span-4 sm:col-start-2 sm:col-span-4 mr-4">
+        <div class="rounded-lg col-start-2 col-span-4 sm:col-start-3 sm:col-span-5 sm:p-2">
 
             
-            <h1 class="text-2xl font-bold text-gray-800 my-6">Colaboradores</h1>           
+            <h1 class="text-2xl font-bold text-gray-800 my-6">Colaboradores</h1>
             
 
-            <div class="flex-col">
+            <div class="">
 
+                <div class="">
                 <!-- Barra de pesquisa para colaboradores -->
-                <form action="/home/colaboradores/search" method="post">
+                <form action="/home/colaboradores/search" method="post" class="">
 
-                    <input placeholder="Buscar colaborador" type="text" name="searchColab" id="" class="bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none w-full">
+                    <input placeholder="Buscar colaborador" type="text" name="searchColab" id="" class="bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none w-full sm:w-auto">
 
                     <button type="submit" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2">PESQUISAR</button>   
                     
                     <a href="/home/addColab" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2">ADICIONAR</a>
 
                 </form>                
-                
+                </div>
+
+
                 <!-- apresentando pesquisa -->                
 
-                <div class="sm:flex grid grid-cols-2 border-2">
-
+                <div class="sm:flex sm:flex-wrap justify-content">
                     <% listColaborador.forEach((listColaborador)=>{ %>
-
-                        <div class="bg-white p-2 bg-opacity-50 my-2 mt-4 flex justify-between rounded-lg shadow-lg col-span-1">
-                            <div class="flex justify-center items-center">
+                        <div class="bg-white p-2 bg-opacity-50 rounded-lg shadow-lg w-72">
+                            <div class="">
                                 <% if(listColaborador.foto==null){ %>
                                     <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
                                 <% } else { %>
@@ -48,13 +49,12 @@
                                     <%= listColaborador.nome %>
                                 </p>                                            
                             </div>    
-                            <div class="my-auto sm:mx-4 text-gray-800">
+                            <div class="my-auto mx-4 text-gray-800">
                                 <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
                                 <a href="/home/colaboradores/<%= listColaborador.id %>/" class="text-blue-500 hover:underline">ver info</a>
                             </div>                        
                         </div>
-                        
-                        <% }); %>
+                    <% }); %>
                 </div>
             </div>
     </div>

@@ -12,7 +12,7 @@
 
 <body class="h-screen w-screen flex items-center justify-center bgcolormain">    
     
-    <div class="bg-gray-200 shadow-md rounded-md p-8 items-center justify-center md:flex mx-4 my-4">
+    <div class="bg-gray-200 shadow-md rounded-md p-8 items-center sm:flex justify-center mx-4 my-4">
 
         <img src="/img/logo.png" alt="Logo" class="h-32">
 
@@ -74,16 +74,14 @@
                 
             </form>
 
+                <div class="text-red-500">
+                    <%= error %>
+                </div> 
                 <div class="py-2">
                     Já tem uma conta? Faça seu <a href="/" class="font-medium">login</a>
-                </div>             
+                </div>                           
             </div>
-
-            <div>
-                <%= error %>
-            </div>
-
-        </div>        
+        </div>              
     </div>
 </body>
 </html>
