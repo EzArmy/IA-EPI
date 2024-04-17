@@ -20,17 +20,20 @@
 
             <div class="">
 
-                <div class="">
+                <div class="flex justify-center">
                 <!-- Barra de pesquisa para colaboradores -->
-                <form action="/home/colaboradores/search" method="post" class="sm:justify-center">
+                <form action="/home/colaboradores/search" method="post" class="flex-wrap">
 
-                    <input placeholder="Buscar colaborador" type="text" name="searchColab" id="" class="bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none w-full">
+                    <input placeholder="Buscar colaborador" type="text" name="searchColab" id="" class="bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none w-full sm:w-80">
 
-                    <button type="submit" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2">PESQUISAR</button>   
+                    <button type="submit" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2">PESQUISAR</button>  
+
+                    <button class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2">
+                        <a href="/home/addColab">ADICIONAR</a>
+                    </button> 
                     
-                    <a href="/home/addColab" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2">ADICIONAR</a>
-
-                </form>                
+                </form>  
+                           
                 </div>
 
 
@@ -45,11 +48,11 @@
                                 <% } else { %>
                                     <img class="rounded-full" src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>" alt="" style="width: 100px; height: 100px;">
                                 <% } %>
-                                <p class="ml-4 text-gray-900 font-semibold">
+                                <p class="text-gray-900 font-semibold">
                                     <%= listColaborador.nome %>
                                 </p>                                            
                             </div>    
-                            <div class="my-auto mx-4 text-gray-800">
+                            <div class="my-auto text-gray-800">
                                 <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
                                 <a href="/home/colaboradores/<%= listColaborador.id %>/" class="text-blue-500 hover:underline">ver info</a>
                             </div>                        

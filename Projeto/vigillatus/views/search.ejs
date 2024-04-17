@@ -16,19 +16,21 @@
     <h1 class="text-2xl font-bold text-gray-800 my-6">Pesquisa</h1>
 
 <% foundColab.forEach((colab)=>{ %>
-    <div class="bg-gray-200 my-2 mt-4 flex justify-between">
-        <div class="flex justify-center items-center">
+    <div class="sm:flex sm:flex-wrap mt-4 justify-center">
+        <div class="bg-white p-2 bg-opacity-50 rounded-lg shadow-lg sm:w-72">
+        <div >
             <% if(colab.foto==null){ %>
                 <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
             <% } else { %>
                 <img class="rounded-full" src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= colab.id %>/<%= colab.foto %>" alt="" style="width: 100px; height: 100px;">
             <% } %>
-            <p><%= colab.nome %></p>
+            <p class="text-gray-900 font-semibold"><%= colab.nome %></p>
         </div>
-        <div class="font-semibold my-auto sm:mx-4 text-gray-800">
+        <div class="my-auto text-gray-800">
             <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
             <a href="/home/colaboradores/<%= colab.id %>/" class="">ver info</a>
         </div>
+    </div>
     </div>
 <% }); %>
 
