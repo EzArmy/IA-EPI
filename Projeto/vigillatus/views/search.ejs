@@ -5,19 +5,24 @@
 
 <div id="loader"></div>
 
-<div class="flex container grid grid-cols-5"> 
+<div class="container grid grid-cols-5"> 
 
     <div class="col-start-1 col-span-1">
         <%- include('./partials/menu') %>
     </div>     
 
-<div class="rounded-lg col-start-2 col-span-4 sm:col-start-3 sm:col-end-5 mr-4">
+<div class="rounded-lg col-start-2 col-span-4 sm:col-start-3 sm:col-span-2 mr-4">
+
 
     <h1 class="text-2xl font-bold text-gray-800 my-6">Pesquisa</h1>
 
+
+<div class="sm:flex sm:flex-wrap mt-4 justify-center">
 <% foundColab.forEach((colab)=>{ %>
-    <div class="sm:flex sm:flex-wrap mt-4 justify-center">
+    <div class="">
+
         <div class="bg-white p-2 bg-opacity-50 rounded-lg shadow-lg sm:w-72">
+
         <div >
             <% if(colab.foto==null){ %>
                 <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
@@ -33,6 +38,7 @@
     </div>
     </div>
 <% }); %>
+
 
 </div>
 </div>
