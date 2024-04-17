@@ -18,9 +18,9 @@
                     <%= listColabInfo.nome %>
                 </h3>
                 <% if(listColabInfo.foto==null){ %>
-                    <img src="/img/profile/default.jpg" alt="imagem de <%= listColabInfo.nome %>" class="w-24 h-24 rounded-full">
+                    <img src="/img/profile/default.jpg" alt="imagem de <%= listColabInfo.nome %>" class="w-32 h-32 rounded-full">
                 <% } else { %>
-                    <img src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColabInfo.id %>/<%= listColabInfo.foto %>" alt="Perfil <%= listColabInfo.nome %>" class="w-24 h-24 rounded-full">
+                    <img src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColabInfo.id %>/<%= listColabInfo.foto %>" alt="Perfil <%= listColabInfo.nome %>" class="w-32 h-32 rounded-full">
                 <% } %>
             </div>
         <% }); %>
