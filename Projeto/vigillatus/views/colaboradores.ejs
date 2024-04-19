@@ -9,82 +9,70 @@
         </div>
 
 
-        <div class="rounded-lg col-start-3 col-span-4 sm:col-start-3 sm:col-span-3  mr-4">
-
+        <div class="rounded-lg col-start-3 col-span-4  mr-4">
 
             <h1 class="text-2xl font-bold text-gray-800 my-6">Colaboradores</h1>
 
-            <div class="">
+            <% if(error){ %>
+                <p><%= error %></p>
+            <% } %>
+            <!-- Barra de pesquisa para colaboradores -->
+            <form action="/home/colaboradores/search" method="post">
 
-                <div class="flex justify-center">
-                <!-- Barra de pesquisa para colaboradores -->
-                <form action="/home/colaboradores/search" method="post" class="flex-wrap">
+                <div class="flex flex-row mb-2">
+                    <input placeholder="Buscar colaborador" type="text" name="searchColab"
+                        class="rounded-tr-none rounded-br-none bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none w-full">
 
-                    <input placeholder="Buscar colaborador" type="text" name="searchColab" id="" class="bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none w-full sm:w-80">
-
-                    <button type="submit" class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2 sm:ml-1">PESQUISAR</button>  
-
-                    <button class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2 sm:ml-2">
-                        <a href="/home/addColab">ADICIONAR</a>
-                    </button> 
-                    
-                </form>  
-                           
+                    <button type="submit"
+                        class="rounded-tl-none hover rounded-bl-none bgcolormain text-white font-semibold rounded-md px-4 py-2 ">PESQUISAR</button>
                 </div>
+                
+            </form>
+            <a href="/home/addColab">
+                <button class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2">
+                    ADICIONAR
+                </button>
+            </a>
 
-
-                <!-- apresentando pesquisa -->                
-
-                <div class="sm:flex sm:flex-wrap mt-4 justify-center">
-                    <% listColaborador.forEach((listColaborador)=>{ %>
-                        <div class="bg-white p-2 bg-opacity-50 rounded-lg shadow-lg sm:w-72">
-                            <div class="">
-                                <% if(listColaborador.foto==null){ %>
-                                    <img class="rounded-full" src="/img/profile/default.jpg" style="width: 100px; height: 100px;" alt="">
-                                <% } else { %>
-                                    <img class="rounded-full" src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>" alt="" style="width: 100px; height: 100px;">
-                                <% } %>
-                                <p class="text-gray-900 font-semibold">
-                                    <%= listColaborador.nome %>
-                                </p>                                            
-                            </div>    
-                            <div class="my-auto text-gray-800">
-                                <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
-                                <a href="/home/colaboradores/<%= listColaborador.id %>/" class="text-blue-500 hover:underline">ver info</a>
-                            </div>                        
-                        </div>
-                    <% }); %>
-                </div>
-            </div>
+            <!-- apresentando pesquisa -->
 
             <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-1 gap-y-2 mt-5">
 
-                <% listColaborador.forEach((listColaborador)=>{ %>
-                    <div class="border-2 bg-white p-2 bg-opacity-50 rounded-lg shadow-lg col-span-1">
-                        <div class="">
-                            <% if(listColaborador.foto==null){ %>
+                <% listColaborador.forEach((colab)=>{ %>
+                    <div class="border-2 bg-white p-2 bg-opacity-50 rounded-lg shadow-lg col-span-1 pe-2 relative">
+                        <div class="flex flex-row items-center">
+
+                            <% if(colab.foto==null){ %>
                                 <img class="rounded-full" src="/img/profile/default.jpg"
                                     style="width: 100px; height: 100px;" alt="">
                                 <% } else { %>
                                     <img class="rounded-full"
-                                        src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= listColaborador.id %>/<%= listColaborador.foto %>"
+                                        src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= colab.id %>/<%= colab.foto %>"
                                         alt="" style="width: 100px; height: 100px;">
                                     <% } %>
-                                        <p class="ml-4 text-gray-900 font-semibold">
-                                            <%= listColaborador.nome %>
-                                        </p>
+
+                                        <div class="flex flex-col overflow-hidden">
+                                            <p class="ml-2 text-3xl text-gray-900  font-semibold text-nowrap ">
+                                                <%= colab.nome %>
+                                            </p>
+                                            <p class="ml-2 text-gray-900 ">
+                                                <%= colab.cargo %>
+                                            </p>
+                                            <p class="ml-2 text-gray-900 ">
+                                                <%= colab.setor %>
+                                            </p>
+
+                                            <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
+                                            <a href="/home/colaboradores/<%= colab.id %>/"
+                                                class="ml-2 text-blue-500 hover:font-semibold">Ver mais</a>
+                                        </div>
                         </div>
-                        <div class="my-auto mx-4 text-gray-800">
-                            <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
-                            <a href="/home/colaboradores/<%= listColaborador.id %>/"
-                                class="text-blue-500 hover:underline">ver info</a>
-                        </div>
+
                     </div>
                     <% }); %>
-
             </div>
         </div>
-    </div>
+        
+    
     </body>
-
-    </html>
+</html>

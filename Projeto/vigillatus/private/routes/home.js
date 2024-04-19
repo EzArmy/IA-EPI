@@ -84,7 +84,7 @@ router.use('/colaboradores', async (req, res, next) => {
         where: { idGestor: [gestorInfo.id] }
     });
 
-    // Renomear as pastas dos colaboradores
+    // ronomeando as pastas dos colaboradores
     listColaborador.forEach(colaborador => {
         const colabOldFolder = `./public/uploads/${gestorInfo.id}/Colaboradores/${colaborador.nome}`;
         const colabNewFolder = `./public/uploads/${gestorInfo.id}/Colaboradores/${colaborador.id}`;
@@ -94,7 +94,6 @@ router.use('/colaboradores', async (req, res, next) => {
         }
     });
 
-    // Passa para a próxima função de middleware ou rota
     next();
 });
 
@@ -106,7 +105,21 @@ router.get('/colaboradores', async (req, res) => {
     // Listando colaboradores vinculados ao gestor
     const listColaborador = await Colaborador.findAll({
         where: { idGestor: [gestorInfo.id] }
-    });
+    }); 
+
+     // mapeando o array de colaboradores para apresentar o nome do cargo
+     for (let colab of listColaborador) {
+        //Buscando id do cargo de cada colaborador cadastrado
+        const cargo = await Cargo.findOne({ where: { id: colab.idCargo } });
+
+        //Trazendo nome do cargo
+        colab.cargo = cargo.nome;
+
+        //Buscando setor de cada colaborador cadastrado
+        const setor = await Setor.findOne({ where: { id: colab.idSetor } });
+
+        colab.setor = setor.descricao
+    }
 
     let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
 
@@ -116,7 +129,8 @@ router.get('/colaboradores', async (req, res) => {
     res.render('colaboradores.ejs', {
         imagePath,
         listColaborador,
-        gestorInfo
+        gestorInfo,
+        error:null
     });
 });
 
@@ -126,41 +140,50 @@ router.post('/colaboradores/search/', async (req, res) => {
     const gestorInfo = req.session.user;
 
     /* Capturando valor no input de pesquisa */
-    const { searchColab } = req.body; // Usar req.query para parâmetros de consulta na URL
+    const { searchColab } = req.body;
 
-    // Listando colaboradores vinculados ao gestor
-    const listColaborador = await Colaborador.findAll({
+     const listColaborador = await Colaborador.findAll({
         where: { idGestor: [gestorInfo.id] }
-    });
+    }); 
 
-    // Verificar se o nome do colaborador está na lista
-    const foundColab = await Colaborador.findAll({
-        where: {
-            nome: {
-                [Op.like]: `${searchColab}%`
+    try {
+        // Listando colaboradores vinculados ao gestor
+        const foundColab = await Colaborador.findAll({
+            where: {
+                idGestor: gestorInfo.id,
+                nome: {
+                    [Op.like]: `${searchColab}%`
+                }
             }
+        });
+
+        let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
+
+        // Se imagePath for null ou vazio, define a imagem padrão
+        imagePath = imagePath || '/img/profile/default.jpg';
+
+        if (foundColab.length > 0) {
+            res.render('search.ejs', {
+                searchColab,
+                gestorInfo,
+                imagePath,
+                foundColab
+            });
+        } else {
+            res.render('colaboradores.ejs', {
+                imagePath,
+                listColaborador,
+                gestorInfo,
+                error:'OH SHIT'
+            });
         }
-    });
-
-    let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
-
-    // Se imagePath for null ou vazio, define a imagem padrão
-    imagePath = imagePath || '/img/profile/default.jpg';
-
-    if (foundColab) {
-        console.log(`Você pesquisou ${searchColab}`);
-        console.log(`Achei o colaborador ${foundColab.nome}`);
-        res.render('search.ejs', {
-            gestorInfo,
+    } catch (error) {
+        res.render('colaboradores.ejs', {
             imagePath,
             listColaborador,
             gestorInfo,
-            foundColab
+            error:'OH SHIT'
         });
-    } else {
-        console.log(`Você pesquisou ${searchColab}`);
-        console.log('Colaborador não encontrado');
-        res.send('Colaborador não encontrado'); // Enviar resposta ao cliente
     }
 });
 
@@ -192,7 +215,8 @@ router.get(`/colaboradores/:id/`, async (req, res) => {
         listColabInfo,
         gestorInfo,
         listColabCargo,
-        imagePath
+        imagePath,
+        error:null
     });
 });
 

@@ -52,7 +52,7 @@ router.get('/', async (req,res)=>{
     
     // Se imagePath for null ou vazio, define a imagem padrão
     imagePath = imagePath || '/img/profile/default.jpg';
-
+    
     res.render('addColab.ejs', {
         listaSetores:listaSetores,
         listaCargos: listaCargos,
