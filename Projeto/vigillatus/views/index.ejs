@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <title>Login</title>
 </head>
 
-<body class="h-screen w-screen flex items-center justify-center bgcolormain">        
+<body class="h-screen w-screen flex items-center justify-center bgcolormain">
 
-    <div class="bg-gray-200 shadow-md rounded-md p-8 md:flex md:h-80 items-center justify-center mx-4 my-4">  
-            
+    <div class="bg-gray-200 shadow-md rounded-md p-8 md:flex md:h-80 items-center justify-center mx-4 my-4">
+
         <img src="/img/logo.png" alt="Logo" class="md:h-32 justify-center h-full">
-    
-        <div class="md:w-96">    
-            <h1 class="text-center font-medium mt-4">Login</h1>            
-    
+
+        <div class="md:w-96">
+            <h1 class="text-center font-medium mt-4">Login</h1>
+
             <form action="/login" method="post">
                 <div class="py-4">
-                    <input placeholder="E-mail" type="email" name="email" id="" class="pl-4 pr-2 py-1 w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none rounded-md">
+                    <input placeholder="E-mail" type="email" name="email" id=""
+                        class="pl-4 pr-2 py-1 w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none rounded-md">
                 </div>
                 <div class="py-4">
-                    <input placeholder="Senha" type="password" name="senha" id="" class="pl-4 pr-2 py-1 w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none rounded-md">
-                </div>            
-    
-                <div class="py-4">
-                    <input type="submit" value="Acessar" class="py-1 w-full text-white font-medium bgcolormain hover rounded-md">
+                    <input placeholder="Senha" type="password" name="senha" id=""
+                        class="pl-4 pr-2 py-1 w-full bg-white border border-gray-base placegolder-gray-300 focus:outline-none rounded-md">
                 </div>
-                
+
+                <div class="py-4">
+                    <input type="submit" value="Acessar"
+                        class="py-1 w-full text-white font-medium bgcolormain hover rounded-md">
+                </div>
+
             </form>
-    
-    
+
+
             <!-- Exibir mensagem de erro se existir -->
             <% if (error) { %>
-                <div class="card">
-                 <div class="card-body">
-                        <p class="card-text text-red-500"><%= error %></p>
-                 </div>
+                <div id="errorCard" class="absolute top-0 w-1/5 h-2/12 right-5 m-2 rounded-md bg-gray-200 shadow-md">
+                    <div class="px-2 py-2">
+                        <p class="card-text font-bold text-red-500">
+                            <%= error %>
+                        </p>
+                    </div>
+                    <div class="loadBar rounded-bl-md rounded-br-md"></div>
                 </div>
             <% } %>
-    
-    
-            <div class="md:mb-4 flex flex-row gap-1">
-                <p>Ainda não tem uma conta? </p><a class="font-bold" href="/cadastrar">Cadastre-se</a>
-            </div>    
-        
+
+
+                    <div class="md:mb-4 flex flex-row gap-1">
+                        <p>Ainda não tem uma conta? </p><a class="font-bold" href="/cadastrar">Cadastre-se</a>
+                    </div>
+
         </div>
     </div>
 </body>
+
 </html>
