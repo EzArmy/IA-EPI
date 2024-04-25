@@ -11,7 +11,7 @@
         </div>
 
 
-        <div class="col-start-2 col-span-5 sm:col-start-3 text-gray-800 mr-4">
+        <div class="sm:flex sm:flex-col col-start-2 col-span-5 sm:col-start-3 sm:col-end-5 text-gray-800 sm:ml-4 mr-4">
 
             <!-- page COntainer -->
             <div class="mt-4">
@@ -41,19 +41,21 @@
                             </h3>
 
                             <div class="my-8">
-                                <div class="flex justify-between">
+                                
                                 <a href="/home/perfilGestor/edit">
                                     <button
-                                        class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300">
+                                        class="bgcolormain hover text-white font-semibold rounded-md w-full py-2 focus:outline-none transition-colors duration-300 mb-2">
                                         Editar perfil
                                     </button>
                                 </a>
 
                                 <button
-                                    class="bg-red-500 hover:bg-red-400 text-white font-semibold rounded-md px-10 py-2 focus:outline-none transition-colors duration-300"
+                                    class="bg-red-500 hover:bg-red-400 text-white font-semibold rounded-md w-full py-2 focus:outline-none transition-colors duration-300"
                                     onclick="showModal()">Delete
                                 </button>
-                            </div>
+                                
+
+                            
 
                                 <div id="delModal" class="w-3/5 h-1/2 rounded-lg border-4 border-gray-800">
 
