@@ -11,32 +11,22 @@
         </div>
 
 
-        <div class="col-start-2 col-span-4 sm:col-start-3 text-gray-800 mr-4">
+        <div class="col-start-2 col-span-5 sm:col-start-3 text-gray-800 mr-4">
 
             <!-- page COntainer -->
-            <div class="mt-4 ml-2">
+            <div class="mt-4">
 
-<<<<<<< Updated upstream
-                    <div class="">
-                    <% if(gestorInfo.foto==null) { %>
-                        <img class="rounded-full" style="width: 150px; height: 150px;" src="/img/profile/default.jpg" alt="">
-                        <% } else { %>
-                            <img class="rounded-full items-center" style="width: 150px; height: 150px;"
-                                src="/uploads/<%= gestorInfo.id %>/<%= gestorInfo.foto %>" alt="">
-                            <% } %>
-                    </div>        
-=======
                 <h1 class="text-2xl font-bold my-8">Perfil do Gestor</h1>
->>>>>>> Stashed changes
 
+                <div class="mb-4 flex justify-center">
                 <% if(gestorInfo.foto==null) { %>
-                    <img class="rounded-full" style="width: 150px; height: 150px;" src="/img/profile/default.jpg"
+                    <img class="w-32 h-32 rounded-full" src="/img/profile/default.jpg"
                         alt="">
                     <% } else { %>
                         <img class="rounded-full items-center" style="width: 150px; height: 150px;"
                             src="/uploads/<%= gestorInfo.id %>/<%= gestorInfo.foto %>" alt="">
                         <% } %>
-
+                </div>
                             <h1 class="text-3xl font-medium mb-2 my-8">
                                 <%= gestorInfo.nome %>
                             </h1>
@@ -50,29 +40,20 @@
                                 <%= gestorSetor.descricao %>
                             </h3>
 
-<<<<<<< Updated upstream
-                        <button class="bg-red-500 hover:bg-red-400 text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300 w-28" onclick="showModal()">DELETE</button>
-
-                        <div id="delModal" class="w-3/5 h-1/2 rounded-lg border-gray-800 border-2 bg-opacity-50 rounded-lg shadow-lg">
-
-                            <div class="flex flex-col w-full bg-gray-300 rounded">
-
-                                <div class="flex flex-row justify-end px-5 py-2">
-                                    <button onclick="closeModal()">
-                                        <img class="h-8 w-8" src="/img/icons/x-lg.svg" alt="close icon">
-=======
                             <div class="my-8">
+                                <div class="flex justify-between">
                                 <a href="/home/perfilGestor/edit">
                                     <button
                                         class="bgcolormain hover text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300">
                                         Editar perfil
->>>>>>> Stashed changes
                                     </button>
                                 </a>
 
                                 <button
-                                    class="bg-red-500 hover:bg-red-400 text-white font-semibold rounded-md px-4 py-2 focus:outline-none transition-colors duration-300"
-                                    onclick="showModal()">DELETE</button>
+                                    class="bg-red-500 hover:bg-red-400 text-white font-semibold rounded-md px-10 py-2 focus:outline-none transition-colors duration-300"
+                                    onclick="showModal()">Delete
+                                </button>
+                            </div>
 
                                 <div id="delModal" class="w-3/5 h-1/2 rounded-lg border-4 border-gray-800">
 
