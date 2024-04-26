@@ -58,88 +58,37 @@
                             
 
                                 <div id="delModal" class="w-3/5 h-1/2 rounded-lg border-4 border-gray-800">
-
                                     <div class="flex flex-col w-full bg-gray-300 rounded">
-
                                         <div class="flex flex-row justify-end px-5 py-2">
                                             <button onclick="closeModal()">
                                                 <img class="h-8 w-8" src="/img/icons/x-lg.svg" alt="close icon">
                                             </button>
-
-                                            <button class="bg-red-500 p-1 rounded text-white font-bold"
-                                                onclick="showModal()">DELETE</button>
-
-                                            <div id="delModal" class="w-3/5 h-1/2 rounded-lg border-4 border-gray-800">
-
-                                                <div class="flex flex-col w-full bg-gray-300 rounded">
-
-                                                    <div class="flex flex-row justify-end px-5 py-2">
-                                                        <button onclick="closeModal()">
-                                                            <img class="h-8 w-8" src="/img/icons/x-lg.svg"
-                                                                alt="close icon">
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="flex flex-col h-full justify-center items-center">
-                                                        <h1 class="text-4xl font-bold my-2">DELETAR? TEM CERTEZA? 🤔
-                                                        </h1>
-                                                        <p class="text-xl ">Quer mesmo deletar seu perfil e todas as
-                                                            informações nele armazenadas?</p>
-                                                    </div>
-
-                                                    <div class="flex flex-col">
-                                                        <p>Digite os números gerados abaixo:</p>
-                                                        <p id="randomNum">
-                                                            <!-- Gerando 6 números aleatórios -->
-                                                        </p>
-                                                        <input
-                                                            placeholder="Digite os número acima para poder prosseguir"
-                                                            type="text" id="checkInput" oninput="numCheck()">
-                                                    </div>
-
-                                                    <div class="flex flex-row h-full items-center justify-around">
-                                                        <form action="/home/perfilGestor/edit/delete" method="post">
-                                                            <button disabled='true' id="delBtn">
-                                                                Sim, quero deletar minhas informações 😠😡
-                                                            </button>
-                                                        </form>
-
-                                                        <button onclick="closeModal()">
-                                                            Não, não vou deletar minhas informações 😇
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="flex flex-col h-full justify-center items-center">
-                                                <h1 class="text-4xl font-bold my-2">DELETAR? TEM CERTEZA? 🤔</h1>
-                                                <p class="text-xl ">Quer mesmo deletar seu perfil e todas as informações
-                                                    nele armazenadas?</p>
-                                            </div>
-
-                                            <div class="flex flex-col">
-                                                <p>Digite os números gerados abaixo:</p>
-                                                <p id="randomNum">
-
-                                                </p>
-                                                <input placeholder="Digite os número acima para poder prosseguir"
-                                                    type="text" id="checkInput" oninput="numCheck()">
-                                            </div>
-
-                                            <div class="flex flex-row h-full items-center justify-around">
-                                                <form action="/home/perfilGestor/edit/delete" method="post">
-                                                    <button disabled='true' onclick="clicked()" id="delBtn">
-                                                        Sim, quero deletar minhas informações 😠😡
-                                                    </button>
-                                                </form>
-
-                                                <button onclick="closeModal()">
-                                                    Não, não vou deletar minhas informações 😇
-                                                </button>
-                                            </div>
                                         </div>
-
+                                
+                                        <div class="flex flex-col h-full justify-center items-center">
+                                            <h1 class="text-4xl font-bold my-2">TEM CERTEZA QUE DESEJA DELETAR?</h1>
+                                            <p class="sm:text-xl ml-4 mb-4">Quer mesmo deletar o perfil e todas as informações nele armazenadas?</p>
+                                        </div>
+                                
+                                        <div class="flex flex-col">
+                                            <p>Digite os números gerados abaixo:</p>
+                                            <p id="randomNum">
+                                                <!-- Gerando 6 números aleatórios -->
+                                            </p>
+                                            <input placeholder="Digite os número acima para poder prosseguir" type="text" id="checkInput" oninput="numCheck()">
+                                        </div>
+                                
+                                        <div class="flex flex-row h-full items-center justify-around">
+                                            <form action="/home/perfilGestor/edit/delete" method="post">
+                                                <button disabled='true' onclick="clicked()" id="delBtn">
+                                                    Quero deletar minhas informações!
+                                                </button>
+                                            </form>
+                                
+                                            <button onclick="closeModal()">
+                                                Não vou deletar minhas informações!
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

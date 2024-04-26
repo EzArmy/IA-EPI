@@ -15,7 +15,7 @@
     <h1 class="text-2xl font-bold text-gray-800 mb-4 my-6">Editar Colaborador</h1>
 
     <form action="/home/colaboradores/<%= findColab.id %>/editColab/colabUpdate" method="post" enctype="multipart/form-data" class="mb-8">
-        <input value="<%= findColab.nome %>" placeholder="Colaborador - Nome" type="text" name="colabNome" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+        <input value="<%= findColab.nome %>" placeholder="Colaborador - Nome" type="text" name="colabNome" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none overflow-hidden">
         <br>
         <input value="<%= findColab.email %>" placeholder="Colaborador - Email" type="email" name="colabEmail" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
         <br>

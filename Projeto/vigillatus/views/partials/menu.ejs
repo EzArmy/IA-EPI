@@ -68,7 +68,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-kanban-fill text-white" viewBox="0 0 16 16">
                 <path d="M2.5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm5 2h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1m-5 1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm9-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1"/>
               </svg>
-            <li class="mx-4 mt-3 sm:font-medium text-white max-xl:hidden block">                
+            <li class="mx-4 mt-3 sm:font-medium text-white max-xl:hidden block">               
                     Dashboard
                 </a>
             </li>
@@ -76,9 +76,9 @@
 
         
         <div class="flex mx-auto sm:mx-6 items-center justify-center sm:justify-start">
-            <a href="/home/perfilGestor" class="overflow-hidden sm:flex sm:flex-row items-center">
-                <img src="<%= imagePath %>" style='width: 50px; height: 50px; border-radius: 100%;' alt="<%= gestorInfo.name %>">
-                <p class="mt-2 sm:mx-4 text-center text-white font-medium text-nowrap overflow-hidden">
+            <a href="/home/perfilGestor" class="sm:flex justify-center items-center">
+                <img src="<%= imagePath %>" style='width: 50px; height: 50px; border-radius: 100%;' alt="<%= gestorInfo.name %>" class="">
+                <p class="mt-2 sm:mx-4 text-center text-white font-medium text-nowrap overflow-hidden max-xl:hidden block">
                     <%= gestorInfo.nome %>
                 </p>
             </a>
@@ -88,6 +88,6 @@
                        
                 
         
-    </ul>    
+    </ul>
 
 </aside>
