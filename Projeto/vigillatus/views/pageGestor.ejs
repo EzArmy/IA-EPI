@@ -10,35 +10,41 @@
             <%- include('./partials/menu') %>
         </div>
 
-
-        <div class="sm:flex sm:flex-col col-start-2 col-span-5 sm:col-start-3 sm:col-end-5 text-gray-800 sm:ml-4 mr-4">
-
-            <!-- page COntainer -->
-            <div class="mt-4">
-
+<!-- sm:flex sm:flex-col sm:ml-4 mr-4 -->
+        <div class="sm:flex sm:flex-col col-start-2 col-span-5 md:col-start-3 md:col-end-5 sm:ml-4 mr-4">
+            
+            
                 <h1 class="text-2xl font-bold my-8">Perfil do Gestor</h1>
 
+                
                 <div class="mb-4 flex justify-center">
-                <% if(gestorInfo.foto==null) { %>
-                    <img class="w-32 h-32 rounded-full" src="/img/profile/default.jpg"
-                        alt="">
-                    <% } else { %>
-                        <img class="rounded-full items-center" style="width: 150px; height: 150px;"
-                            src="/uploads/<%= gestorInfo.id %>/<%= gestorInfo.foto %>" alt="">
-                        <% } %>
+                    <% if(gestorInfo.foto==null) { %>
+                        <img class="rounded-full border-6 border-white fixed" style="width: 280px; height: 280px;" src="/img/profile/default.jpg"
+                            alt="">
+                        <% } else { %>
+                            <img class="rounded-full border-6 border-white fixed" style="width: 280px; height: 280px;"
+                                src="/uploads/<%= gestorInfo.id %>/<%= gestorInfo.foto %>" alt="">
+                            <% } %>
                 </div>
-                            <h1 class="text-3xl font-medium mb-2 my-8">
-                                <%= gestorInfo.nome %>
-                            </h1>
-                            <h3 class="text-lg mb-1">
-                                <%= gestorInfo.email %>
-                            </h3>
-                            <h3 class="text-lg mb-1">
-                                <%= gestorCargo.nome %>
-                            </h3>
-                            <h3 class="text-lg mb-4">
-                                <%= gestorSetor.descricao %>
-                            </h3>
+
+
+                <div class="bg-white rounded-xl px-2 py-2 mt-36 flex flex-col items-center">
+                                <div>
+                    
+                                    <h1 class="text-4xl font-medium mb-2 mt-36">
+                                        <%= gestorInfo.nome %>
+                                    </h1>
+                                    <h3 class="text-xl mb-1">
+                                        <%= gestorInfo.email %>
+                                    </h3>
+                                    <h3 class="text-xl mb-1">
+                                        <%= gestorCargo.nome %>
+                                    </h3>
+                                    <h3 class="text-xl mb-4">
+                                        <%= gestorSetor.descricao %>
+                                    </h3>
+                                </div>                
+                </div>
 
                             <div class="my-8">
                                 
@@ -92,7 +98,8 @@
                                     </div>
                                 </div>
                             </div>
-            </div>
+        </div>
+    </div>
             </body>
 
             </html>
