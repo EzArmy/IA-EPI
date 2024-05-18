@@ -1,17 +1,19 @@
-<%- include('./partials/header', {
-    gestorInfo: gestorInfo,
-    pageName: 'Cameras'
-}) %>
-<body class="">
+<%- include('./partials/header', { gestorInfo: gestorInfo, pageName: 'Cameras' }) %>
 
-    <div class="container grid grid-cols-5">
-    
-        <div id="loader"></div>
-     
-        <%- include('partials/menu.ejs', {gestorInfo:gestorInfo})%>        
-           
-    </div>
+    <body class="">
 
-</body>
+        <div class="container grid grid-cols-5">
 
-</html>
+            <div id="loader"></div>
+
+            <%- include('partials/menu.ejs', {gestorInfo:gestorInfo})%>
+            <div class="flex flex-row border-2 border-red-500">
+                <div>
+                    AI AI
+                </div>
+            </div>
+
+
+    </body>
+
+    </html>
