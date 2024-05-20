@@ -7,12 +7,16 @@
             <div id="loader"></div>
 
             <%- include('partials/menu.ejs', {gestorInfo:gestorInfo})%>
-            <div class="flex flex-row border-2 border-red-500">
-                <div>
-                    AI AI
-                </div>
-            </div>
+            <div class="col-span-4 grid grid-cols-4 border-2 border-red-500">
+               <!-- Main cam -->
+               <div class="col-span-3 border-2 border-green-500">
+                    Main
+               </div>
 
+               <div class="col-span-1 border-2 border-blue-500">
+                Camlist 
+               </div>
+            </div>
 
     </body>
 
