@@ -1,49 +1,63 @@
 <%- include('./partials/header', { gestorInfo: gestorInfo, pageName: 'Adicionar colaborador' }) %>
 
-<div id="loader"></div>
+    <div id="loader"></div>
 
-<div class="flex grid grid-cols-7">
+    <div class="flex grid grid-cols-7">
 
-    <div class="col-start-1 col-span-1">
-        <%- include('./partials/menu') %>
-    </div>
-
-    <div class="col-start-2 col-span-6 mx-2">        
-
-        <h1 class="text-2xl font-bold text-gray-800 mb-4 my-6">Adicionar Colaborador</h1>
-
-        <!-- Exibir mensagem de erro se existir -->
-        <% if (error) { %>
-        <div class="card bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-            <p><%= error %></p>
+        <div class="col-start-1 col-span-1">
+            <%- include('./partials/menu') %>
         </div>
-        <% } %>
 
-        <form action="/home/addColab/cadColab" method="post" enctype="multipart/form-data" class="mb-8">
-            <input placeholder="Nome" type="text" name="colabNome" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
-            
-            <input placeholder="Email" type="email" name="colabEmail" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
-            
-            <select name="colabSetor" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
-                <option disabled selected>Escolha um setor</option>
-                <% listaSetores.forEach((listaSetores)=>{ %>
-                <option value="<%= listaSetores.id %>"><%= listaSetores.descricao %></option>
-                <% }); %>
-            </select>
-            
-            <select name="colabCargo" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
-                <option disabled selected>Escolha um cargo</option>
-                <% listaCargos.forEach((listaCargos)=>{ %>
-                <option value="<%= listaCargos.id %>"><%= listaCargos.nome %></option>
-                <% }); %>
-            </select>
-            
-            <input type="file" name="colabFoto" id="" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
-            
-            <input type="submit" value="CADASTRAR COLABORADOR" class="w-full bgcolormain hover text-white font-semibold rounded-md px-4 py-2 focus:outline-none">
-        </form>
+        <div class="col-start-2 col-span-6 mx-2">
+
+            <h1 class="text-2xl font-bold text-gray-800 mb-4 my-6">Adicionar Colaborador</h1>
+
+            <!-- Exibir mensagem de erro se existir -->
+            <% if (error) { %>
+                <div class="card bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                    <p>
+                        <%= error %>
+                    </p>
+                </div>
+                <% } %>
+                    <div class="flex flex-col items-center justify-center">
+                        <form action="/home/addColab/cadColab" method="post" enctype="multipart/form-data"
+                            class="mb-8 max-w-screen-lg self-center">
+                            <input placeholder="Nome" type="text" name="colabNome" id=""
+                                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+
+                            <input placeholder="Email" type="email" name="colabEmail" id=""
+                                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+
+                            <select name="colabSetor" id=""
+                                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+                                <option disabled selected>Escolha um setor</option>
+                                <% listaSetores.forEach((listaSetores)=>{ %>
+                                    <option value="<%= listaSetores.id %>">
+                                        <%= listaSetores.descricao %>
+                                    </option>
+                                    <% }); %>
+                            </select>
+
+                            <select name="colabCargo" id=""
+                                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+                                <option disabled selected>Escolha um cargo</option>
+                                <% listaCargos.forEach((listaCargos)=>{ %>
+                                    <option value="<%= listaCargos.id %>">
+                                        <%= listaCargos.nome %>
+                                    </option>
+                                    <% }); %>
+                            </select>
+
+                            <input type="file" name="colabFoto" id=""
+                                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+
+                            <input type="submit" value="CADASTRAR COLABORADOR"
+                                class="w-fit bgcolormain hover text-white font-semibold rounded-md px-4 py-2 focus:outline-none">
+                        </form>
+                    </div>
+        </div>
     </div>
-</div>
 
     </body>
 

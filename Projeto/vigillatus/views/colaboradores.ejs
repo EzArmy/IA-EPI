@@ -13,76 +13,89 @@
             <h1 class="text-2xl font-bold text-gray-800 my-6">Colaboradores</h1>
 
             <% if(error){ %>
-                <p><%= error %></p>
-            <% } %>
-            <!-- Barra de pesquisa para colaboradores -->
-            <form action="/home/colaboradores/search" method="post">
+                <p>
+                    <%= error %>
+                </p>
+                <% } %>
 
-                <div class="flex flex-row mb-2">
-                    <input placeholder="Buscar colaborador" type="text" name="searchColab"
-                        class="rounded-tr-none rounded-br-none bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none w-full">
+                    <!-- Criando container para as funções da tela de colaboradores -->
+                    <div class="max-w-screen-md">
+                        <!-- Barra de pesquisa para colaboradores -->
+                        <form action="/home/colaboradores/search" method="post">
 
-                    <button type="submit"
-                        class="rounded-tl-none hover rounded-bl-none bgcolormain text-white font-semibold rounded-md px-4 py-2 ">PESQUISAR</button>
-                </div>
-                
-            </form>
-            <a href="/home/addColab">
-                <button class="hover flex flex-row items-center gap-2 hover:text-white text-gray-800 font-semibold border-2 bg-white bg-opacity-50 rounded-lg px-4 py-2">
-                    ADICIONAR 
-                    <i class="bi bi-person-plus-fill"></i>
-                </button>
-            </a>
+                            <div class="flex flex-row mb-2">
+                                <input placeholder="Buscar colaborador" type="text" name="searchColab"
+                                    class="rounded-tr-none rounded-br-none bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none w-full">
 
-            <!-- Filtros -->
-            <div class="flex flex-row mt-2 gap-2">
-                <button class="hover flex flex-row items-center gap-2 hover:text-white text-gray-800 font-semibold border-2 bg-white bg-opacity-50 rounded-lg px-4 py-2">
-                    A-Z 
-                </button>
-                <button class="hover flex flex-row items-center gap-2 hover:text-white text-gray-800 font-semibold border-2 bg-white bg-opacity-50 rounded-lg px-4 py-2">
-                    Área 
-                </button>
-            </div>
+                                <button type="submit"
+                                    class="rounded-tl-none hover rounded-bl-none bgcolormain text-white font-semibold rounded-md px-4 py-2 ">PESQUISAR</button>
+                            </div>
 
-            <!-- apresentando pesquisa -->
+                        </form>
+                        <a href="/home/addColab" class="w-fit">
+                            <button
+                                class="hover flex flex-row items-center gap-2 hover:text-white text-gray-800 font-semibold border-2 bg-white bg-opacity-50 rounded-lg px-4 py-2">
+                                ADICIONAR
+                                <i class="bi bi-person-plus-fill"></i>
+                            </button>
+                        </a>
 
-            <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-1 gap-y-2 mt-5">
+                        <!-- Filtros -->
+                        <div class="flex flex-row mt-2 gap-2">
+                            <select name="alfList" id="" class="px-2 py-1 rounded">
+                                <option value="1" selected>A-Z</option>
+                                <option value="2">Z-A</option>
+                            </select>
+                            <select name="loclist" id="" class="px-2 py-1 rounded">
+                                <option value="1" selected>
+                                    - - -
+                                </option>
+                                <!-- Lembrar de listar as áreas de forma dinâmica -->
 
-                <% listColaborador.forEach((colab)=>{ %>
-                    <div class="border-2 bg-white p-2 bg-opacity-50 rounded-lg shadow-lg col-span-1 pe-2 relative">
-                        <div class="flex flex-row items-center">
-
-                            <% if(colab.foto==null){ %>
-                                <img class="rounded-full" src="/img/profile/default.jpg"
-                                    style="width: 100px; height: 100px;" alt="">
-                                <% } else { %>
-                                    <img class="rounded-full"
-                                        src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= colab.id %>/<%= colab.foto %>"
-                                        alt="" style="width: 100px; height: 100px;">
-                                    <% } %>
-
-                                        <div class="flex flex-col overflow-hidden">
-                                            <p class="ml-2 text-xl md:text-3xl text-gray-900 font-semibold text-nowrap ">
-                                                <%= colab.nome %>
-                                            </p>
-                                            <p class="ml-2 text-gray-900 ">
-                                                <%= colab.cargo %>
-                                            </p>
-                                            <p class="ml-2 text-gray-900 ">
-                                                <%= colab.setor %>
-                                            </p>
-
-                                            <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
-                                            <a href="/home/colaboradores/<%= colab.id %>/"
-                                                class="ml-2 text-blue-500 hover:font-semibold">Ver mais</a>
-                                        </div>
+                            </select>
                         </div>
-
                     </div>
-                    <% }); %>
-            </div>
+
+                    <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-1 gap-y-2 mt-5">
+
+                        <% listColaborador.forEach((colab)=>{ %>
+                            <div
+                                class="border-2 bg-white p-2 bg-opacity-50 rounded-lg shadow-lg col-span-1 pe-2 relative">
+                                <div class="flex flex-row items-center">
+
+                                    <% if(colab.foto==null){ %>
+                                        <img class="rounded-full" src="/img/profile/default.jpg"
+                                            style="width: 100px; height: 100px;" alt="">
+                                        <% } else { %>
+                                            <img class="rounded-full"
+                                                src="/uploads/<%= gestorInfo.id %>/colaboradores/<%= colab.id %>/<%= colab.foto %>"
+                                                alt="" style="width: 100px; height: 100px;">
+                                            <% } %>
+
+                                                <div class="flex flex-col overflow-hidden">
+                                                    <p
+                                                        class="ml-2 text-xl md:text-3xl text-gray-900 font-semibold text-nowrap ">
+                                                        <%= colab.nome %>
+                                                    </p>
+                                                    <p class="ml-2 text-gray-900 ">
+                                                        <%= colab.cargo %>
+                                                    </p>
+                                                    <p class="ml-2 text-gray-900 ">
+                                                        <%= colab.setor %>
+                                                    </p>
+
+                                                    <!-- Criando rota dinâmica para a página de detalhes do colaborador -->
+                                                    <a href="/home/colaboradores/<%= colab.id %>/"
+                                                        class="ml-2 text-blue-500 hover:font-semibold">Ver mais</a>
+                                                </div>
+                                </div>
+
+                            </div>
+                            <% }); %>
+                    </div>
         </div>
-        
-    
-    </body>
-</html>
+
+
+        </body>
+
+        </html>

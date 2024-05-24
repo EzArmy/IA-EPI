@@ -1,67 +1,67 @@
-
-<%- include('./partials/header', {
-    gestorInfo: gestorInfo,
-    pageName: 'Editar Gestor'
-}) %>
+<%- include('./partials/header', { gestorInfo: gestorInfo, pageName: 'Editar Gestor' }) %>
 
 
-<div class="grid grid-cols-7">
+    <div class="grid grid-cols-7">
 
-    <div class="col-start-1 col-span-1">
-        <%- include('./partials/menu', {gestorInfo: gestorInfo}) %>
-    </div>     
+        <div class="col-start-1 col-span-1">
+            <%- include('./partials/menu', {gestorInfo: gestorInfo}) %>
+        </div>
 
-    
-    <div class="rounded-lg col-start-2 col-span-6 mx-2">
 
-        <div id="loader"></div>
+        <div class="rounded-lg col-start-2 col-span-6 mx-2">
 
-        <h1 class="text-2xl font-bold text-gray-800 mb-4 my-8">Editar Perfil do Gestor</h1>
+            <div id="loader"></div>
 
-        <div class="text-red-500 mb-4"><%= error %></div>
-        <form action="/home/perfilGestor/edit/gestorUpdate" method="post" enctype="multipart/form-data">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4 my-8">Editar Perfil do Gestor</h1>
 
-            
-            <input required placeholder="Nome" type="text" name="gestorNome" value="<%= gestorInfo.nome %>"
-                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none overflow-hidden">
+            <div class="text-red-500 mb-4">
+                <%= error %>
+            </div>
+            <div class="flex justify-center">
+                <form action="/home/perfilGestor/edit/gestorUpdate" method="post" enctype="multipart/form-data" class="max-w-screen-lg flex-col">
 
-            
-            <input required placeholder="Email" type="email" name="gestorEmail" value="<%= gestorInfo.email %>"
-                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
 
-            
-            <input required placeholder="Senha" type="password" name="gestorSenha" value="<%= gestorInfo.senha %>"
-                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+                    <input required placeholder="Nome" type="text" name="gestorNome" value="<%= gestorInfo.nome %>" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none overflow-hidden">
 
-            
-            <input placeholder="Foto de Perfil" type="file" name="gestorFoto"
-                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
 
-            
-            <select required name="gestorSetor"
-                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
-                <option selected disabled>Escolha um Setor</option>
-                <% listaSetores.forEach((listaSetores)=>{ %>
-                <option value="<%= listaSetores.id %>"><%= listaSetores.descricao %></option>
-                <% }); %>
-            </select>
+                    <input required placeholder="Email" type="email" name="gestorEmail" value="<%= gestorInfo.email %>" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
 
-            
-            <select required name="gestorCargo"
-                class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
-                <option selected disabled>Escolha um Cargo</option>
-                <% listaCargos.forEach((listaCargos)=>{ %>
-                <option value="<%= listaCargos.id %>"><%= listaCargos.nome %></option>
-                <% }); %>
-            </select>
 
-            
-            <input type="submit" value="ATUALIZAR"
-                class="w-full bgcolormain bg-opacity-50 hover text-white font-semibold rounded-md shadow-lg px-4 py-2 focus:outline-none">
-        </form>
+                    <input required placeholder="Senha" type="password" name="gestorSenha" value="<%= gestorInfo.senha %>" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+
+
+                    <input placeholder="Foto de Perfil" type="file" name="gestorFoto" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+
+
+                    <select required name="gestorSetor"
+                        class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+                        <option selected disabled>Escolha um Setor</option>
+                        <% listaSetores.forEach((listaSetores)=>{ %>
+                            <option value="<%= listaSetores.id %>">
+                                <%= listaSetores.descricao %>
+                            </option>
+                            <% }); %>
+                    </select>
+
+
+                    <select required name="gestorCargo"
+                        class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none">
+                        <option selected disabled>Escolha um Cargo</option>
+                        <% listaCargos.forEach((listaCargos)=>{ %>
+                            <option value="<%= listaCargos.id %>">
+                                <%= listaCargos.nome %>
+                            </option>
+                            <% }); %>
+                    </select>
+
+
+                    <input type="submit" value="ATUALIZAR"
+                        class="min-w-screen-sm self-end bgcolormain bg-opacity-50 hover text-white font-semibold rounded-md shadow-lg px-4 py-2 focus:outline-none">
+                </form>
+            </div>
+        </div>
+
     </div>
+    </body>
 
-</div>
-</body>
-
-</html>
+    </html>
