@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const app = express();
-const port = '8080';
+const port = '3131';
 const fs = require('fs');
 
 //Sequelize modules import
