@@ -42,18 +42,29 @@
 
                         <!-- Filtros -->
                         <div class="flex flex-row mt-2 gap-2">
-                            <select name="alfList" id="" class="px-2 py-1 rounded">
-                                <option value="1" selected>A-Z</option>
-                                <option value="2">Z-A</option>
-                            </select>
-                            <select name="loclist" id="" class="px-2 py-1 rounded">
-                                <option value="1" selected>
-                                    - - -
-                                </option>
-                                <!-- Lembrar de listar as áreas de forma dinâmica -->
+                            <form action="/home/colaboradores" method="get">
+                                <!-- Ordem alfabética -->
+                                <select name="sort" id="sort" class="px-2 py-1 rounded">
+                                    <option value="nome-asc" selected>A-Z</option>
+                                    <option value="nome-desc">Z-A</option>
+                                </select>
 
-                            </select>
+                                <!-- Ordenar por setor -->
+                                <select name="" id="">
+                                    <option value="" selected>---</option>
+
+                                    <!-- Listando setores -->
+                                    <% listaSetores.forEach((setor)=>{ %>
+                                        <option value="<%= setor.descricao %>"><%= setor.descricao %></option>
+                                    <% }); %>
+                                </select>
+
+                                <button type="submit" class="px-2 py-1 bgcolormain text-white font-semibold rounded-md">
+                                    Aplicar
+                                </button>
+                            </form>
                         </div>
+
                     </div>
 
                     <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-1 gap-y-2 mt-5">

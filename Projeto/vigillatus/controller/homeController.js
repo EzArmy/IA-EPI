@@ -33,6 +33,55 @@ const colabFotoStorage = multer.diskStorage({
 
 const uploadColabFoto = multer({ storage: colabFotoStorage });
 
+// Função de Merge Sort
+// Função de Merge Sort
+function mergeSort(arr, key, order = 'asc') {
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    const middle = Math.floor(arr.length / 2);
+    const left = arr.slice(0, middle);
+    const right = arr.slice(middle);
+
+    return merge(
+        mergeSort(left, key, order),
+        mergeSort(right, key, order),
+        key,
+        order
+    );
+}
+
+function merge(left, right, key, order) {
+    let resultArray = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (order === 'asc') {
+            if (left[leftIndex][key] < right[rightIndex][key]) {
+                resultArray.push(left[leftIndex]);
+                leftIndex++;
+            } else {
+                resultArray.push(right[rightIndex]);
+                rightIndex++;
+            }
+        } else {
+            if (left[leftIndex][key] > right[rightIndex][key]) {
+                resultArray.push(left[leftIndex]);
+                leftIndex++;
+            } else {
+                resultArray.push(right[rightIndex]);
+                rightIndex++;
+            }
+        }
+    }
+
+    return resultArray
+        .concat(left.slice(leftIndex))
+        .concat(right.slice(rightIndex));
+}
+
 /* Rotas */
 router.get('/', (req, res) => {
 
@@ -99,38 +148,41 @@ router.use('/colaboradores', async (req, res, next) => {
 
 // Rota para a página de Colaboradores
 router.get('/colaboradores', async (req, res) => {
-
     const gestorInfo = req.session.user;
 
     // Listando colaboradores vinculados ao gestor
-    const listColaborador = await Colaborador.findAll({
+    let listColaborador = await Colaborador.findAll({
         where: { idGestor: [gestorInfo.id] }
-    }); 
+    });
 
-     // mapeando o array de colaboradores para apresentar o nome do cargo
-     for (let colab of listColaborador) {
-        //Buscando id do cargo de cada colaborador cadastrado
+    //Listando setores
+    let listaSetores = await Setor.findAll();
+
+    // Mapeando o array de colaboradores para apresentar o nome do cargo e setor
+    for (let colab of listColaborador) {
         const cargo = await Cargo.findOne({ where: { id: colab.idCargo } });
-
-        //Trazendo nome do cargo
         colab.cargo = cargo.nome;
-
-        //Buscando setor de cada colaborador cadastrado
         const setor = await Setor.findOne({ where: { id: colab.idSetor } });
+        colab.setor = setor.descricao;
+    }
 
-        colab.setor = setor.descricao
+    // Aplicando a ordenação com base nos filtros selecionados
+    const { sort } = req.query;
+
+    if (sort) {
+        const [sortKey, sortOrder] = sort.split('-');
+        listColaborador = mergeSort(listColaborador, sortKey, sortOrder);
     }
 
     let imagePath = gestorInfo && gestorInfo.foto ? `/uploads/${gestorInfo.id}/${gestorInfo.foto}` : '';
-
-    // Se imagePath for null ou vazio, define a imagem padrão
     imagePath = imagePath || '/img/profile/default.jpg';
 
     res.render('colaboradores.ejs', {
         imagePath,
+        listaSetores,
         listColaborador,
         gestorInfo,
-        error:null
+        error: null
     });
 });
 
