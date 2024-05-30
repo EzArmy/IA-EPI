@@ -164,7 +164,7 @@ router.get('/colaboradores', async (req, res) => {
         colab.cargo = cargo.nome;
         const setor = await Setor.findOne({ where: { id: colab.idSetor } });
         colab.setor = setor.descricao;
-    }
+    }   
 
     // Aplicando a ordenação com base nos filtros selecionados
     const { sort } = req.query;
