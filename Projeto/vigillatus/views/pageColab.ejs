@@ -8,7 +8,7 @@
         <%- include('./partials/menu') %>
     </div>
 
-    <div class="col-start-2 col-span-6 mx-2">
+    <div class="rounded-lg col-start-2 col-span-6 lg:col-start-3 lg:col-span-4 mx-2">
 
         <h1 class="text-2xl font-bold text-gray-800 my-6">Colaborador</h1>
 
@@ -25,7 +25,7 @@
         <div class="bg-white rounded-xl px-2 py-2 sm:mt-36 flex flex-col items-center">
 
             <% listColabInfo.forEach((colabInfo) => { %>
-                <h4 class="text-3xl font-semibold text-gray-700 mb-4 sm:mt-36">
+                <h4 class="text-3xl font-semibold text-gray-700 my-4 sm:mt-36">
                     <%= colabInfo.nome %>
                 </h4>
             <% }); %>
@@ -37,7 +37,7 @@
             <% }); %>
 
         <div class="">
-            <button onclick="showModal()" class="bg-red-500 hover:bg-red-300 text-white font-semibold rounded-md px-4 py-2 mt-4">
+            <button onclick="showModal()" class="bg-red-500 hover:bg-red-300 text-white font-semibold rounded-md px-4 py-2 my-4">
                 DELETAR COLABORADOR
             </button>
         </div>
@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<div id="delModal" class="w-3/5 h-1/2 rounded-lg border-2 border-gray-800 bg-opacity-50 shadow-lg fixed inset-0 flex items-center justify-center">
+<div id="delModal" class="w-3/5 h-1/2 rounded-lg border-4 border-gray-800">
     <div class="flex flex-col w-full bg-gray-300 rounded">
 
         <div class="flex flex-row justify-end px-5 py-2">
