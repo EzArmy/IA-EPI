@@ -1,206 +1,41 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Apr 11, 2024 at 05:54 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               10.4.32-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             12.6.0.6765
+-- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Database: `vigillatus`
---
+-- Data exporting was unselected.
 
--- --------------------------------------------------------
+-- Data exporting was unselected.
 
---
--- Table structure for table `cargos`
---
+-- Data exporting was unselected.
 
-CREATE TABLE `cargos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(255) DEFAULT NULL,
-  `nivel` smallint(6) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Data exporting was unselected.
 
---
--- Dumping data for table `cargos`
---
+-- Data exporting was unselected.
 
-INSERT INTO `cargos` (`id`, `nome`, `nivel`, `createdAt`, `updatedAt`) VALUES
-(1, 'Tec. Segurança no trabalho', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Gestor', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 'Mecânico', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 'Soldador', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+-- Data exporting was unselected.
 
--- --------------------------------------------------------
+-- Data exporting was unselected.
 
---
--- Table structure for table `colaboradores`
---
+-- Data exporting was unselected.
 
-CREATE TABLE `colaboradores` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `foto` varchar(255) DEFAULT NULL,
-  `idSetor` int(11) NOT NULL,
-  `idCargo` int(11) NOT NULL,
-  `idGestor` int(11) NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Data exporting was unselected.
 
---
--- Dumping data for table `colaboradores`
---
+-- Data exporting was unselected.
 
-INSERT INTO `colaboradores` (`id`, `nome`, `email`, `foto`, `idSetor`, `idCargo`, `idGestor`, `createdAt`, `updatedAt`) VALUES
-(1, 'Colab 1 teste', 'colab1@teste', 'neom-TA5hw14Coh4-unsplash.jpg', 1, 4, 2, '2024-04-05 05:59:24', '2024-04-07 06:56:29'),
-(2, 'Colab 2', 'colab2@teste', 'neom-TA5hw14Coh4-unsplash.jpg', 1, 4, 2, '2024-04-05 06:00:08', '2024-04-05 06:00:08');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gestores`
---
-
-CREATE TABLE `gestores` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `senha` varchar(255) DEFAULT NULL,
-  `foto` varchar(255) DEFAULT NULL,
-  `idSetor` int(11) NOT NULL,
-  `idCargo` int(11) NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `gestores`
---
-
-INSERT INTO `gestores` (`id`, `nome`, `email`, `senha`, `foto`, `idSetor`, `idCargo`, `createdAt`, `updatedAt`) VALUES
-(1, 'João Almeida da Silva', 'jalmeida@teste', 'Jalmeida@123', 'neom-TA5hw14Coh4-unsplash.jpg', 1, 2, '2024-04-05 04:51:16', '2024-04-05 04:52:57'),
-(2, 'Jefferson Wilson da Silva', 'jwilson@teste', 'Jwilson@123', NULL, 1, 2, '2024-04-05 05:07:13', '2024-04-05 05:37:50'),
-(3, 'Pedro da Silva', 'psilva@teste', 'Psilva@123', 'neom-TA5hw14Coh4-unsplash.jpg', 1, 2, '2024-04-05 05:55:04', '2024-04-05 05:57:50');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `setores`
---
-
-CREATE TABLE `setores` (
-  `id` int(11) NOT NULL,
-  `descricao` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `setores`
---
-
-INSERT INTO `setores` (`id`, `descricao`, `createdAt`, `updatedAt`) VALUES
-(1, 'Oficina Mecânica', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Caldeira', '2024-03-30 18:10:00', '0000-00-00 00:00:00'),
-(3, 'Carregamento', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `cargos`
---
-ALTER TABLE `cargos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `colaboradores`
---
-ALTER TABLE `colaboradores`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idSetor` (`idSetor`),
-  ADD KEY `idCargo` (`idCargo`),
-  ADD KEY `idGestor` (`idGestor`);
-
---
--- Indexes for table `gestores`
---
-ALTER TABLE `gestores`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idSetor` (`idSetor`),
-  ADD KEY `idCargo` (`idCargo`);
-
---
--- Indexes for table `setores`
---
-ALTER TABLE `setores`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `cargos`
---
-ALTER TABLE `cargos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `colaboradores`
---
-ALTER TABLE `colaboradores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `gestores`
---
-ALTER TABLE `gestores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `setores`
---
-ALTER TABLE `setores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `colaboradores`
---
-ALTER TABLE `colaboradores`
-  ADD CONSTRAINT `colaboradores_ibfk_1` FOREIGN KEY (`idSetor`) REFERENCES `setores` (`id`),
-  ADD CONSTRAINT `colaboradores_ibfk_2` FOREIGN KEY (`idCargo`) REFERENCES `cargos` (`id`),
-  ADD CONSTRAINT `colaboradores_ibfk_3` FOREIGN KEY (`idGestor`) REFERENCES `gestores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `gestores`
---
-ALTER TABLE `gestores`
-  ADD CONSTRAINT `gestores_ibfk_1` FOREIGN KEY (`idSetor`) REFERENCES `setores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `gestores_ibfk_2` FOREIGN KEY (`idCargo`) REFERENCES `cargos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
