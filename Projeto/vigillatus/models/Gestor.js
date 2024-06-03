@@ -33,6 +33,6 @@ Gestor.belongsTo(Setor, { foreignKey: 'idSetor', onDelete: 'CASCADE' });
 Gestor.belongsTo(Cargo, { foreignKey: 'idCargo', onDelete: 'CASCADE' });
 Gestor.hasMany(Colaborador, { foreignKey: 'idGestor', onDelete: 'CASCADE' });
 
-/* Gestor.sync(); */
+Gestor.sync({force: false});
 
 module.exports = Gestor;

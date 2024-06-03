@@ -9,6 +9,12 @@ const Setor = require('./models/Setor');
 const Cargo = require('./models/Cargo');
 const Gestor = require('./models/Gestor');
 const Colaborador = require('./models/Colaborador');
+const EPI = require('./models/EPI');
+const SetorEpi = require('./models/SetorEpi');
+const Camera = require('./models/Camera');
+const Ocorrencia = require('./models/Ocorrencia');
+/* const Norma = require('./models/Norma'); */
+const OcorrenciaNorma = require('./models/OcorrenciaNorma');
 
 //Router imports
 const cadastrar = require('./controller/signUpController');
@@ -32,6 +38,7 @@ app.use(express.static('public'));
 
 //Body-parser config
 const bodyParser = require('body-parser');
+const Norma = require('./models/Norma');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
@@ -52,6 +59,12 @@ app.listen(port, () => {
 //Rota para o a tela de login
 app.get('/', (req, res) => {
     res.render('index.ejs', { error: null });
+    OcorrenciaNorma;
+    Norma;
+    Ocorrencia;
+    Camera;
+    SetorEpi;
+    EPI;
     Colaborador;
     Gestor;
     Setor;

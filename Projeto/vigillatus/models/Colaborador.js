@@ -35,6 +35,6 @@ const Colaborador = Db.sequelize.define('colaboradores', {
     }
 });
 
-/* Colaborador.sync(); */
+Colaborador.sync({force: false});
 
 module.exports = Colaborador;
